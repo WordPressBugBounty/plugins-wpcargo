@@ -6,11 +6,11 @@
  * Author: <a href="http://www.wptaskforce.com/">WPTaskForce</a>
  * Text Domain: wpcargo
  * Domain Path: /languages
- * Version: 7.0.6
+ * Version: 8.0.0
  */
 /*
 	WPCargo - Track and Trace Plugin
-	Copyright (C) 2015  WPTaskForce
+	Copyright (C) 2024  WPTaskForce
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
@@ -32,7 +32,7 @@ if (!defined('ABSPATH')) {
 		
 //* Defined constant
 define( 'WPCARGO_TEXTDOMAIN', 'wpcargo' );
-define( 'WPCARGO_VERSION', '7.0.6' );
+define( 'WPCARGO_VERSION', '8.0.0' );
 define( 'WPCARGO_DB_VERSION', '2.0.0' );
 define( 'WPCARGO_FILE_DIR', __FILE__  );
 define( 'WPCARGO_PLUGIN_URL', plugin_dir_url( WPCARGO_FILE_DIR ) );

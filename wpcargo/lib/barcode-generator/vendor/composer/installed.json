@@ -2,17 +2,17 @@
     "packages": [
         {
             "name": "chillerlan/php-qrcode",
-            "version": "5.0.1",
-            "version_normalized": "5.0.1.0",
+            "version": "5.0.2",
+            "version_normalized": "5.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chillerlan/php-qrcode.git",
-                "reference": "e81ed39ca3c94357aa021c7525fa9ffb451018d1"
+                "reference": "da5bdb82c8755f54de112b271b402aaa8df53269"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/e81ed39ca3c94357aa021c7525fa9ffb451018d1",
-                "reference": "e81ed39ca3c94357aa021c7525fa9ffb451018d1",
+                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/da5bdb82c8755f54de112b271b402aaa8df53269",
+                "reference": "da5bdb82c8755f54de112b271b402aaa8df53269",
                 "shasum": ""
             },
             "require": {
@@ -33,7 +33,7 @@
                 "setasign/fpdf": "Required to use the QR FPDF output.",
                 "simple-icons/simple-icons": "SVG icons that you can use to embed as logos in the QR Code"
             },
-            "time": "2024-01-07T19:37:03+00:00",
+            "time": "2024-02-27T14:37:26+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -99,17 +99,17 @@
         },
         {
             "name": "chillerlan/php-settings-container",
-            "version": "3.1.1",
-            "version_normalized": "3.1.1.0",
+            "version": "3.2.1",
+            "version_normalized": "3.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chillerlan/php-settings-container.git",
-                "reference": "c41e89f8bf963d1e88584a47fb78d1cd204b6e2a"
+                "reference": "95ed3e9676a1d47cab2e3174d19b43f5dbf52681"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chillerlan/php-settings-container/zipball/c41e89f8bf963d1e88584a47fb78d1cd204b6e2a",
-                "reference": "c41e89f8bf963d1e88584a47fb78d1cd204b6e2a",
+                "url": "https://api.github.com/repos/chillerlan/php-settings-container/zipball/95ed3e9676a1d47cab2e3174d19b43f5dbf52681",
+                "reference": "95ed3e9676a1d47cab2e3174d19b43f5dbf52681",
                 "shasum": ""
             },
             "require": {
@@ -117,17 +117,18 @@
                 "php": "^8.1"
             },
             "require-dev": {
-                "phan/phan": "^5.4",
-                "phpcsstandards/php_codesniffer": "^3.8",
                 "phpmd/phpmd": "^2.15",
-                "phpunit/phpunit": "^10.5"
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-deprecation-rules": "^1.2",
+                "phpunit/phpunit": "^10.5",
+                "squizlabs/php_codesniffer": "^3.10"
             },
-            "time": "2024-01-05T23:55:20+00:00",
+            "time": "2024-07-16T11:13:48+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "chillerlan\\Settings\\": "src/"
+                    "chillerlan\\Settings\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -167,22 +168,22 @@
         },
         {
             "name": "picqer/php-barcode-generator",
-            "version": "v2.4.0",
-            "version_normalized": "2.4.0.0",
+            "version": "v3.1.0",
+            "version_normalized": "3.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/picqer/php-barcode-generator.git",
-                "reference": "4cec18909dffd86e14beb69b1040f2520c2e1bb1"
+                "reference": "5fd1162746cf425dac7734fa09b1f0065b7d86c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/picqer/php-barcode-generator/zipball/4cec18909dffd86e14beb69b1040f2520c2e1bb1",
-                "reference": "4cec18909dffd86e14beb69b1040f2520c2e1bb1",
+                "url": "https://api.github.com/repos/picqer/php-barcode-generator/zipball/5fd1162746cf425dac7734fa09b1f0065b7d86c7",
+                "reference": "5fd1162746cf425dac7734fa09b1f0065b7d86c7",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": "^7.3|^8.0"
+                "php": "^8.2"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.10",
@@ -193,7 +194,7 @@
                 "ext-gd": "For JPG and PNG generators, GD or Imagick is required",
                 "ext-imagick": "For JPG and PNG generators, GD or Imagick is required"
             },
-            "time": "2023-09-16T08:58:52+00:00",
+            "time": "2024-09-21T12:50:01+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -207,14 +208,14 @@
             ],
             "authors": [
                 {
-                    "name": "Nicola Asuni",
-                    "email": "info@tecnick.com",
-                    "homepage": "http://nicolaasuni.tecnick.com"
-                },
-                {
                     "name": "Casper Bakker",
                     "email": "info@picqer.com",
                     "homepage": "https://picqer.com"
+                },
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "homepage": "http://nicolaasuni.tecnick.com"
                 }
             ],
             "description": "An easy to use, non-bloated, barcode generator in PHP. Creates SVG, PNG, JPG and HTML images from the most used 1D barcode standards.",
@@ -245,14 +246,8 @@
             ],
             "support": {
                 "issues": "https://github.com/picqer/php-barcode-generator/issues",
-                "source": "https://github.com/picqer/php-barcode-generator/tree/v2.4.0"
+                "source": "https://github.com/picqer/php-barcode-generator/tree/v3.1.0"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/casperbakker",
-                    "type": "github"
-                }
-            ],
             "install-path": "../picqer/php-barcode-generator"
         }
     ],

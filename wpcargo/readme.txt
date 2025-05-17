@@ -1,4 +1,4 @@
-﻿=== WPCargo Track & Trace===
+=== WPCargo Track & Trace===
 
 Contributors: WPTaskforce
 Donate link: https://wpcargo.com/
@@ -6,13 +6,13 @@ Tags: transportation management, status tracking, delivery calculator, shipment 
 Author: WPTaskforce.com
 Plugin URI: https://www.wptaskforce.com/
 Author URI: https://www.wptaskforce.com
-Tested up to: 6.6.1
-Requires PHP: 8.1
-Stable tag: 7.0.6
+Tested up to: 6.8.1
+Requires PHP: 8.3
+Stable tag: 8.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-WPCargo is a track &amp; trace system for courier, courier script, parcel, balikbayan system, shipment and transportation management system, ideal solution for freight forwarder, customs broker, balikbayan forwarder, importer, exporter, supplier, shipper, overseas agent, transporter, &amp; warehouse operator.​​ WPCargo helps manage operations, customers, drivers, quotation, form, branch, and employees. WPCargo is developed by  WPTaskforce.com a website and design agency in Iloilo City Philippines.
+WPCargo is a track &amp; trace system for courier, courier script, parcel, balikbayan system, shipment and transportation management system, ideal solution for freight forwarder, customs broker, balikbayan forwarder, importer, exporter, supplier, shipper, overseas agent, transporter, &amp; warehouse operator. WPCargo helps manage operations, customers, drivers, quotation, form, branch, and employees. WPCargo is developed by  WPTaskforce.com a website and design agency in Iloilo City Philippines.
 
 == Description ==
 
@@ -49,6 +49,7 @@ WPCargo helps manage operations, customers, drivers, quotation, form, branch, an
 * [Add Signature in custom field manager](https://www.wpcargo.com/product/wpcargo-signature-add-ons/)
 * [SMS Notification](https://www.wpcargo.com/product/wpcargo-sms-add-ons/) -One Way SMS,Twilio, BULK SMS, BESTSMS.EU, SMS GATEWAY HUB, WEBSMS.GR, SmsGateWay24 , African Talk 
 * [Advance SMS Notification](https://www.wpcargo.com/product/wpcargo-sms-add-ons/) -Multiple status has its own settings and sms gateway settings. One Way SMS,Twilio, BULK SMS, BESTSMS.EU, SMS GATEWAY HUB, WEBSMS.GR, SmsGateWay24 , African Talk 
+* [WPCargo SMS OTP Add-ons] - Send SMS OTP notification in each  shipment if the shipment status switch to  out for delivery . 
 * [User Front-end Manager](https://www.wpcargo.com/product/wpcargo-frontend-manager/) - Allow User to Manage there shipment in  front end  
 * [Advance Email  Notification]()- Allow admin to manage different  notification in every statuses.
 * [CSV Import/Export](https://www.wpcargo.com/product/wpcargo-importexport-add-ons/) - Import and export shipment in csv 
@@ -80,6 +81,13 @@ assigned default employee or driver to manage the shipment
 * [WPCargo Baidu Map Integration](https://www.wpcargo.com/product/wpcargo-baidu-map-integration/) - Allow Baidu map to integrate in WPCargo pages instead of Google map.
 * [Delivery of Empty Box and Pick up Balikbayan Box System](https://www.wpcargo.com/product/balikbayan-box-management-addon/) - Balikbayan Box Management Addon is designed to provide an automated solution for your balikbayan box operators.
 * [WPCargo Customer Support Ticket System](https://www.wpcargo.com/product/wpcargo-support-ticket-and-claim-desk/)- allow user to create ticket & claims to their shipments
+* [WPCargo Servify Integration]- allow your shipment details sync to Servify 
+* [WPCargo Descartes MacroPoint  Integration]- allow your shipment details sync to Descartes MacroPoint 
+* [WPCargo  Allied Express   Integration]- get rate and allow your shipment details sync to  Allied Express 
+* [WPCargo Courier Please    Integration]- get rate and allow your shipment details sync to  Courier Please 
+* [WPCargo  Startrack Integration  Integration]- get rate and allow your shipment details sync to  Startrack 
+* [WPCargo Payment Transaction]- record your payment history per shipment 
+* [WPCargo WPCargo Item Manager]- allow you to add items in your shipment and allow you to add costing in each item. 
 * [Driver Mobile App](https://www.wpcargo.com/purchase-wpcargo-mobile-app/) - Android & IOS  app use to gather  photo and signature of the receiver   and update the shipment status 
 * [Customer Mobile App](https://www.wpcargo.com/purchase-wpcargo-mobile-app/) - Android & IOS  app use to gather  allow your customer to track in their phone 
 
@@ -137,9 +145,12 @@ Single Page with results:[wpcargo_trackform]
 3. Shipment Results
 
 == Changelog ==
+== 8.0.0 ==
+- Apply latest  QR Code Library  
+- Php 8.3 Compatibility 
+
 == 7.0.6 ==
 - fixed in_array issue in  general settings 
-
 
 == 7.0.5 ==
 - added filter hook to allow merge tag conditions

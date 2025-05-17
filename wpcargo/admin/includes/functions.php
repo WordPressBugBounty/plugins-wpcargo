@@ -2,6 +2,11 @@
 if (!defined('ABSPATH')){
     exit; // Exit if accessed directly
 }
+
+use chillerlan\QRCode\{QRCode, QROptions};
+use chillerlan\QRCode\Output\QRGdImagePNG;
+require_once WPCARGO_PLUGIN_PATH.'lib/barcode-generator/vendor/autoload.php';
+
 function is_wpcargo_client(){
 	$current_user = wp_get_current_user();
 	$roles 		  =  $current_user->roles;
@@ -701,25 +706,32 @@ function wpcargo_generate_barcodecode( $string ){
     $base64		= 'data:image/png;base64,'.base64_encode($generator->getBarcode( $string, $generator::TYPE_CODE_128, $width, $height ));
     return apply_filters( 'wpcargo_generate_barcodecode', $base64, $string );
 }
+
 function wpcargo_generate_qrcode( $string ){
-    // include QRcode Library
-    require_once WPCARGO_PLUGIN_PATH.'lib/phpqrcode-master/qrlib.php';
+    if( empty($string) ){
+        return false;
+    }
+	
+    
     // Set up directory and filename
     $tempDir    = WPCARGO_PLUGIN_PATH.'lib/phpqrcode/';
     $filename   = 'wpcargoqrcode.png';
     $path       = $tempDir.$filename;
     // Create QRCode PNG fileformat
-    $level 		= apply_filters( 'wpcargo_qrcode_level', QR_ECLEVEL_M );
-    $size 	    = apply_filters( 'wpcargo_qrcode_size', 3 );
-    $margin 	= apply_filters( 'wpcargo_qrcode_margin', 1 );
-    // $text, $outfile = false, $level = QR_ECLEVEL_L, $size = 3, $margin = 4, $saveandprint=false
-    QRcode::png($string, $path, $level, $size, $margin );
-    $type = pathinfo($path, PATHINFO_EXTENSION);
-    // Conver file format into base64
-    $data   = file_get_contents($path);
-    $base64 =  'data:image/' . $type . ';base64,' . base64_encode($data);
+   
+	
+	
+	
+
+$base64 = (new QRCode)->render($string);
+	
+	
+   
+	
+	
     return apply_filters( 'wpcargo_generate_qrcode', $base64, $string );
 }
+
 
 function wpcargo_display_multiple_results_for_multiple_tracking( $shipment_ids ) {
 
