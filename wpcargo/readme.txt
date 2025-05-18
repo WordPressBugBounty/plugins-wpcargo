@@ -1,4 +1,4 @@
-=== WPCargo Track & Trace===
+﻿=== WPCargo Track & Trace===
 
 Contributors: WPTaskforce
 Donate link: https://wpcargo.com/
@@ -8,7 +8,7 @@ Plugin URI: https://www.wptaskforce.com/
 Author URI: https://www.wptaskforce.com
 Tested up to: 6.8.1
 Requires PHP: 8.3
-Stable tag: 8.0.0
+Stable tag: 8.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,7 +99,7 @@ assigned default employee or driver to manage the shipment
 
 [View More features](https://www.wpcargo.com/features/)
 
-Contact Skype: arni.cinco
+Contact Us on MS Teams: [arni.cinco](https://teams.live.com/l/invite/FEAY6fI1IPmCY6FeBY)
 
 == Installation ==
 
@@ -145,6 +145,9 @@ Single Page with results:[wpcargo_trackform]
 3. Shipment Results
 
 == Changelog ==
+== 8.0.1 ==
+- Fix Barcode generator 
+
 == 8.0.0 ==
 - Apply latest  QR Code Library  
 - Php 8.3 Compatibility 
