@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 class WPCargo_Post_Types{
 	public static function init(){
-		add_action('init', array( __CLASS__, 'wpcargo_post_type' ), 9 );
+		add_action('init', array( __CLASS__, 'wpcargo_post_type' ), 0 );
 	}
 	public static function wpcargo_post_type(){
 		$labels_menu = array(

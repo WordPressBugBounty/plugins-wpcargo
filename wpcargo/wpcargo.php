@@ -6,7 +6,7 @@
  * Author: <a href="http://www.wptaskforce.com/">WPTaskForce</a>
  * Text Domain: wpcargo
  * Domain Path: /languages
- * Version: 8.0.1
+ * Version: 8.0.2
  */
 /*
 	WPCargo - Track and Trace Plugin
@@ -27,34 +27,34 @@
 	under certain conditions; type `show c' for details.
 */
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+	exit; // Exit if accessed directly
 }
-		
-//* Defined constant
-define( 'WPCARGO_TEXTDOMAIN', 'wpcargo' );
-define( 'WPCARGO_VERSION', '8.0.1' );
-define( 'WPCARGO_DB_VERSION', '2.0.0' );
-define( 'WPCARGO_FILE_DIR', __FILE__  );
-define( 'WPCARGO_PLUGIN_URL', plugin_dir_url( WPCARGO_FILE_DIR ) );
-define( 'WPCARGO_PLUGIN_PATH', plugin_dir_path( WPCARGO_FILE_DIR ) );
-//** Include files
-	//** Admin
-require_once( WPCARGO_PLUGIN_PATH.'admin/wpc-admin.php' );
-require_once( WPCARGO_PLUGIN_PATH.'admin/classes/class-database.php' );
-require_once( WPCARGO_PLUGIN_PATH.'admin/classes/class-wpcargo.php' );
-//** Frontend
-require_once( WPCARGO_PLUGIN_PATH.'/includes/packages.php' );
-require_once( WPCARGO_PLUGIN_PATH.'/classes/class-wpc-scripts.php' );
-require_once( WPCARGO_PLUGIN_PATH.'/classes/class-wpc-shortcode.php' );
-require_once( WPCARGO_PLUGIN_PATH.'/classes/class-wpc-print.php' );
 
+//* Defined constant
+define('WPCARGO_TEXTDOMAIN', 'wpcargo');
+define('WPCARGO_VERSION', '8.0.2');
+define('WPCARGO_DB_VERSION', '2.0.0');
+define('WPCARGO_FILE_DIR', __FILE__);
+define('WPCARGO_PLUGIN_URL', plugin_dir_url(WPCARGO_FILE_DIR));
+define('WPCARGO_PLUGIN_PATH', plugin_dir_path(WPCARGO_FILE_DIR));
+//** Include files
+//** Admin
+require_once(WPCARGO_PLUGIN_PATH . 'admin/wpc-admin.php');
+require_once(WPCARGO_PLUGIN_PATH . 'admin/classes/class-database.php');
+require_once(WPCARGO_PLUGIN_PATH . 'admin/classes/class-wpcargo.php');
+
+//** Frontend
+require_once(WPCARGO_PLUGIN_PATH . '/includes/packages.php');
+require_once(WPCARGO_PLUGIN_PATH . '/classes/class-wpc-scripts.php');
+require_once(WPCARGO_PLUGIN_PATH . '/classes/class-wpc-shortcode.php');
+require_once(WPCARGO_PLUGIN_PATH . '/classes/class-wpc-print.php');
 
 //** Load text Domain
-add_action( 'plugins_loaded', array( 'WPC_Admin','wpcargo_load_textdomain' ), 30 );
+add_action('init', array('WPC_Admin', 'wpcargo_load_textdomain'), 30);
 // Database Set up
 //** Run when plugin installation
 //** Add user role
-register_activation_hook( WPCARGO_FILE_DIR, array( 'WPC_Admin', 'add_user_role' ) );
-register_deactivation_hook( WPCARGO_FILE_DIR, array( 'WPC_Admin', 'remove_user_role' ) );
+register_activation_hook(WPCARGO_FILE_DIR, array('WPC_Admin', 'add_user_role'));
+register_deactivation_hook(WPCARGO_FILE_DIR, array('WPC_Admin', 'remove_user_role'));
 //** Create track page
-register_activation_hook( WPCARGO_FILE_DIR, array( 'WPC_Admin', 'add_wpc_custom_pages' ) );
+register_activation_hook(WPCARGO_FILE_DIR, array('WPC_Admin', 'add_wpc_custom_pages'));

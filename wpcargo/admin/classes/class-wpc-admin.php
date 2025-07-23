@@ -59,5 +59,6 @@ class WPC_Admin{
 	 }
 	 static function wpcargo_load_textdomain() {
 		 load_plugin_textdomain( 'wpcargo', false, '/wpcargo/languages' );
+		 
 	 }
 }

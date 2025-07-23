@@ -26,3 +26,4 @@ require_once( WPCARGO_PLUGIN_PATH.'admin/classes/class-wpc-admin-settings.php' )
 require_once( WPCARGO_PLUGIN_PATH.'admin/classes/class-wpc-email-settings.php' );
 //** Create post type
 require_once( WPCARGO_PLUGIN_PATH.'admin/classes/class-wpc-post-types.php' );
+require_once(WPCARGO_PLUGIN_PATH . 'admin/classes/class-wpcargo.php');
