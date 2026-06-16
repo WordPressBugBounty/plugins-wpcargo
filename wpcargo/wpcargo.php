@@ -6,7 +6,7 @@
  * Author: <a href="http://www.wptaskforce.com/">WPTaskForce</a>
  * Text Domain: wpcargo
  * Domain Path: /languages
- * Version: 8.0.2
+ * Version: 8.0.3
  */
 /*
 	WPCargo - Track and Trace Plugin
@@ -32,7 +32,7 @@ if (!defined('ABSPATH')) {
 
 //* Defined constant
 define('WPCARGO_TEXTDOMAIN', 'wpcargo');
-define('WPCARGO_VERSION', '8.0.2');
+define('WPCARGO_VERSION', '8.0.3');
 define('WPCARGO_DB_VERSION', '2.0.0');
 define('WPCARGO_FILE_DIR', __FILE__);
 define('WPCARGO_PLUGIN_URL', plugin_dir_url(WPCARGO_FILE_DIR));

@@ -8,7 +8,7 @@ Plugin URI: https://www.wptaskforce.com/
 Author URI: https://www.wptaskforce.com
 Tested up to: 6.8.1
 Requires PHP: 8.2
-Stable tag: 8.0.2
+Stable tag: 8.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -145,6 +145,9 @@ Single Page with results:[wpcargo_trackform]
 3. Shipment Results
 
 == Changelog ==
+== 8.0.3 ==
+- Fixed broken access control vulnerability
+
 == 8.0.2 ==
 - Fixed warning issue on load_text_domain
 

@@ -137,8 +137,7 @@ class WPC_Export_Admin extends WPC_Export{
 		// Handle request then generate response using WP_Ajax_Response
 		$term 			= isset( $_GET['term'] ) ? sanitize_text_field( $_GET['term'] ) : '';
 		$metakey 		= apply_filters( 'wpc_report_search_shipper_name_metakey', 'wpcargo_shipper_name' );
-		$sql 			= "SELECT tbl2.meta_value AS meta_value FROM `$wpdb->posts` AS tbl1 INNER JOIN `$wpdb->postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id WHERE tbl1.post_type LIKE 'wpcargo_shipment' AND tbl2.meta_key LIKE %s AND tbl2.meta_value LIKE %s GROUP BY meta_value";
-		$results 		= $wpdb->get_col( $wpdb->prepare( $sql, $metakey, '%'.$term.'%' ) );
+		$results 		= $wpdb->get_col( $wpdb->prepare( "SELECT tbl2.meta_value AS meta_value FROM `$wpdb->posts` AS tbl1 INNER JOIN `$wpdb->postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id WHERE tbl1.post_type LIKE 'wpcargo_shipment' AND tbl2.meta_key LIKE %s AND tbl2.meta_value LIKE %s GROUP BY meta_value", $metakey, '%'.$term.'%' ) );
 		wp_send_json( $results );
 		wp_die();
 	}

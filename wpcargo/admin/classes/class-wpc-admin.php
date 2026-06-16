@@ -3,20 +3,10 @@ class WPC_Admin{
 	public static function add_user_role() {
 		add_role('cargo_agent', 'WPCargo Agent', array(
 			'read' => true,
-			'create_posts' => true,
-			'edit_posts' => true,
-			'edit_others_posts' => true,
-			'edit_published_posts' => true,
-			'delete_posts' => false
 		));
 		
 		add_role('wpcargo_employee', 'WPCargo Employee', array(
 			'read' => true,
-			'create_posts' => true,
-			'edit_posts' => true,
-			'edit_others_posts' => true,
-			'edit_published_posts' => true,
-			'delete_posts' => false
 		));
 		add_role('wpcargo_client', 'WPCargo Client', array(
 	        'read' => true,

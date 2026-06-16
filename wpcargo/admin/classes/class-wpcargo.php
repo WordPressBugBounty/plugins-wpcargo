@@ -271,47 +271,61 @@ class WPCargo
 	}
 	public function user_time($userID)
 	{
-		global $wpdb, $user;
-		$time = current_time($this->time_format());
-		if (get_option('wpcargo_user_timezone')) {
-			$timezone = get_user_meta($userID, 'wpc_user_timezone', true);
-			if ($timezone) {
-				$findme = 'UTC';
-				$result = stripos($timezone, $findme);
-				if ($result === false) {
-					date_default_timezone_set($timezone);
-					date_default_timezone_get();
-					$time = current_time($this->time_format());
-					date_default_timezone_set(wp_timezone_string());
-				}
-			}
+		if (!get_option('wpcargo_user_timezone')) {
+			return current_time($this->time_format());
 		}
-		return $time;
+
+		$timezone = get_user_meta($userID, 'wpc_user_timezone', true);
+
+		// fallback to WP timezone if none set or invalid
+		if (empty($timezone)) {
+			return current_time($this->time_format());
+		}
+
+		try {
+			$tz = new DateTimeZone($timezone);
+		} catch (Exception $e) {
+			$tz = wp_timezone();
+		}
+
+		$dt = new DateTimeImmutable('now', $tz);
+
+		return wp_date($this->time_format(), $dt->getTimestamp(), $tz);
 	}
 	public function user_date($userID)
 	{
-		$date = current_time($this->date_format());
-		if (get_option('wpcargo_user_timezone')) {
-			$timezone = get_user_meta($userID, 'wpc_user_timezone', true);
-			if ($timezone) {
-				$findme = 'UTC';
-				$result = stripos($timezone, $findme);
-				if ($result === false) {
-					date_default_timezone_set($timezone);
-					date_default_timezone_get();
-					$date = current_time($this->date_format());
-					date_default_timezone_set(wp_timezone_string());
-				}
-			}
+		if (!get_option('wpcargo_user_timezone')) {
+			return current_time($this->date_format());
 		}
-		return $date;
+
+		$timezone = get_user_meta($userID, 'wpc_user_timezone', true);
+
+		// fallback to WP timezone if not set
+		if (empty($timezone)) {
+			return current_time($this->date_format());
+		}
+
+		// If UTC-like value, just use WP default behavior
+		if (stripos($timezone, 'UTC') !== false) {
+			return current_time($this->date_format());
+		}
+
+		try {
+			$tz = new DateTimeZone($timezone);
+		} catch (Exception $e) {
+			$tz = wp_timezone();
+		}
+
+		return wp_date(
+			$this->date_format(),
+			current_time('timestamp'),
+			$tz
+		);
 	}
 	public function agents()
 	{
 		global $wpdb;
-
-		$sql = "SELECT * FROM {$wpdb->prefix}users AS tbluser LEFT JOIN {$wpdb->prefix}usermeta AS tbluserdata ON tbluser.ID = tbluserdata.user_id WHERE tbluserdata.meta_key LIKE 'wp_capabilities'";
-		$results =  $wpdb->get_results($sql, OBJECT);
+		$results =  $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}users AS tbluser LEFT JOIN {$wpdb->prefix}usermeta AS tbluserdata ON tbluser.ID = tbluserdata.user_id WHERE tbluserdata.meta_key LIKE %s", 'wp_capabilities'), OBJECT);
 
 		$agent_name	= array();
 		$users		= array();
@@ -345,8 +359,7 @@ class WPCargo
 		$table_prefix = $wpdb->prefix;
 		$display_name = $userID;
 		if (is_numeric($userID)) {
-			$query = 'SELECT `display_name` FROM `' . $table_prefix . 'users` WHERE `ID` = %d';
-			$display_name =  $wpdb->get_var($wpdb->prepare($query, $userID));
+			$display_name =  $wpdb->get_var($wpdb->prepare('SELECT `display_name` FROM `' . $table_prefix . 'users` WHERE `ID` = %d', $userID));
 		}
 		return $display_name;
 	}
@@ -366,8 +379,7 @@ class WPCargo
 	{
 		global $wpdb;
 		$table_prefix = $wpdb->prefix;
-		$query = 'SELECT `ID` FROM `' . $table_prefix . 'users` WHERE `' . $field . '` LIKE %s';
-		$display_name =  $wpdb->get_var($wpdb->prepare($query, $value));
+		$display_name =  $wpdb->get_var($wpdb->prepare('SELECT `ID` FROM `' . $table_prefix . 'users` WHERE `' . $field . '` LIKE %s', $value));
 		return $display_name;
 	}
 	function time_format()
@@ -458,7 +470,7 @@ class WPCargo
 	public function is_title_exist($title = '')
 	{
 		global $wpdb;
-		$sql 	= $wpdb->prepare("SELECT COUNT(*) FROM `{$wpdb->prefix}posts` WHERE `post_type` LIKE 'wpcargo_shipment' AND `post_status` IN ('publish', 'pending', 'draft') AND `post_title` LIKE %s", $title);
+		$sql 	= $wpdb->prepare("SELECT COUNT(*) FROM `{$wpdb->prefix}posts` WHERE `post_type` = 'wpcargo_shipment' AND `post_status` IN ('publish', 'pending', 'draft') AND `post_title` = %s", $title);
 		$sql  	= apply_filters('wpcargo_is_title_exist_sql', $sql, $title);
 		$result =  $wpdb->get_var($sql);
 		return $result;

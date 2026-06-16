@@ -80,8 +80,7 @@ function wpcargo_trackform_shipment_number($shipment_number)
 
     global $wpdb;
     $shipment_number = sanitize_text_field($shipment_number);
-    $sql = apply_filters('wpcargo_trackform_shipment_number_query', "SELECT `ID` FROM `{$wpdb->prefix}posts` WHERE post_title = '{$shipment_number}' AND `post_status` = 'publish' AND `post_type` = 'wpcargo_shipment' LIMIT 1", $shipment_number);
-    $results = $wpdb->get_var($sql);
+    $results = $wpdb->get_var($wpdb->prepare("SELECT `ID` FROM `{$wpdb->prefix}posts` WHERE post_title = %s AND `post_status` = 'publish' AND `post_type` = 'wpcargo_shipment' LIMIT 1", $shipment_number));
     return $results;
 }
 
@@ -157,8 +156,7 @@ function wpcargo_user_roles_list()
 function wpcargo_has_registered_shipper()
 {
     global $wpdb;
-    $sql = "SELECT tbl2.meta_value FROM `{$wpdb->prefix}posts` AS tbl1 INNER JOIN `{$wpdb->prefix}postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id WHERE tbl1.post_status LIKE 'publish' AND tbl1.post_type LIKE 'wpcargo_shipment' AND tbl2.meta_key LIKE 'registered_shipper' AND ( tbl2.meta_value IS NOT NULL AND tbl2.meta_value <> '' ) GROUP BY tbl2.meta_value";
-    $result = $wpdb->get_col($sql);
+    $result = $wpdb->get_col($wpdb->prepare("SELECT tbl2.meta_value FROM `{$wpdb->prefix}posts` AS tbl1 INNER JOIN `{$wpdb->prefix}postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id WHERE tbl1.post_status = 'publish' AND tbl1.post_type = 'wpcargo_shipment' AND tbl2.meta_key = %s AND ( tbl2.meta_value IS NOT NULL AND tbl2.meta_value <> '' ) GROUP BY tbl2.meta_value", 'registered_shipper'));
     return $result;
 }
 function wpcargo_print_fonts()
@@ -902,28 +900,28 @@ function get_page_id_by_title($page_title, $output = OBJECT, $post_type = 'page'
 {
     global $wpdb;
 
+    $page = null;
+
     if (is_array($post_type)) {
         $post_type           = esc_sql($post_type);
         $post_type_in_string = "'" . implode("','", $post_type) . "'";
-        $sql                 = $wpdb->prepare(
+        $page = $wpdb->get_var($wpdb->prepare(
             "SELECT ID
 			FROM $wpdb->posts
 			WHERE post_title = %s
 			AND post_type IN ($post_type_in_string)",
             $page_title
-        );
+        ));
     } else {
-        $sql = $wpdb->prepare(
+        $page = $wpdb->get_var($wpdb->prepare(
             "SELECT ID
 			FROM $wpdb->posts
 			WHERE post_title = %s
 			AND post_type = %s",
             $page_title,
             $post_type
-        );
+        ));
     }
-
-    $page = $wpdb->get_var($sql);
 
     if ($page) {
         return get_post($page, $output);
