@@ -1,4 +1,5 @@
-<h3><?php echo wpcargo_brand_name(); ?> <?php esc_html_e('User Profile', 'wpcargo' ); ?></h3>
+<?php if(!defined('ABSPATH')) { exit; } ?>
+<h3><?php echo esc_html(wpcargo_brand_name()); ?> <?php esc_html_e('User Profile', 'wpcargo' ); ?></h3>
 <table class="form-table">
 	<tr>
 		<th><label for="wpc_user_timezone"><?php esc_html_e('Timezone', 'wpcargo' ); ?></label></th>

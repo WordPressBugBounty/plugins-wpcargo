@@ -44,7 +44,7 @@ class WPC_Shipment_History_Map{
 	function settings_navigation(){
 		$view = sanitize_text_field($_GET['page']);
 		?>
-		<a class="nav-tab <?php echo ( $view == 'wpc-shmap-settings') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo admin_url().'admin.php?page=wpc-shmap-settings'; ?>" ><?php echo esc_html(wpcargo_map_settings_label()); ?></a>
+		<a class="nav-tab <?php echo ( $view == 'wpc-shmap-settings') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo esc_url(admin_url().'admin.php?page=wpc-shmap-settings'); ?>" ><?php echo esc_html(wpcargo_map_settings_label()); ?></a>
 		<?php
 	}
 	function map_settings_callback(){
@@ -62,7 +62,7 @@ class WPC_Shipment_History_Map{
 		$shmap_origin_marker = !empty(get_option('shmap_origin_marker') )  ? get_option('shmap_origin_marker') : '';
 		?>
 		<div class="wrap">
-        	<h1><?php echo wpcargo_map_settings_label(); ?></h1>
+        	<h1><?php echo esc_html(wpcargo_map_settings_label()); ?></h1>
             <?php require_once( WPCARGO_PLUGIN_PATH.'admin/templates/admin-navigation.tpl.php' ); ?>
 			<div class="postbox">
 				<div class="inside">

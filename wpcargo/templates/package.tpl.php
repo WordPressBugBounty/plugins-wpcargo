@@ -1,5 +1,6 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div id="wpc-multiple-package" class="print-section wpcargo-table-responsive table-responsive">
-	<p class="header-title"><strong><?php echo apply_filters( 'wpc_multiple_package_header', esc_html__( 'Packages', 'wpcargo' ) ); ?></strong></p>
+	<p class="header-title"><strong><?php echo esc_html(apply_filters( 'wpc_multiple_package_header', __( 'Packages', 'wpcargo' ) )); ?></strong></p>
 	<table class="table wpcargo-table" style="width:100%;">
 		<thead>
 			<tr>
@@ -23,10 +24,10 @@
 							continue;
 						}
 						?>
-						<td class="package-data <?php echo wpcargo_to_slug($field_key); ?>">
+						<td class="package-data <?php echo esc_attr(wpcargo_to_slug($field_key)); ?>">
 							<?php 
 								$package_data = array_key_exists( $field_key, $data_value ) ? $data_value[$field_key] : '' ;
-								echo is_array( $package_data ) ? implode(',', $package_data ) : esc_html( $package_data ); 
+								echo is_array( $package_data ) ? esc_html(implode(',', $package_data )) : esc_html( $package_data ); 
 							?>
 						</td>
 					<?php endforeach; ?>

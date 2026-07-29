@@ -34,11 +34,11 @@ class WPCargo_Print {
 		</style>
 		<?php if( is_admin() ): ?>
 			<div class="wpcargo-print-btn">
-				<a class="button button-primary" type="button" onclick="wpcargo_print('wpcargo-result-print')"><?php echo apply_filters( 'wpcargo_print_invoice_label', esc_html__( 'Print Track Result', 'wpcargo') ); ?></a>
+				<a class="button button-primary" type="button" onclick="wpcargo_print('wpcargo-result-print')"><?php echo esc_html(apply_filters( 'wpcargo_print_invoice_label', __( 'Print Track Result', 'wpcargo') )); ?></a>
 			</div>
 		<?php else: ?>
 			<div class="wpcargo-print-btn">
-				<a class="wpcargo-print wpcargo-btn wpcargo-btn-sm wpcargo-btn-primary" type="button" onclick="wpcargo_print('wpcargo-result-print')"><?php echo apply_filters( 'wpcargo_print_invoice_label', esc_html__( 'Print Track Result', 'wpcargo') ); ?></a>
+				<a class="wpcargo-print wpcargo-btn wpcargo-btn-sm wpcargo-btn-primary" type="button" onclick="wpcargo_print('wpcargo-result-print')"><?php echo esc_html(apply_filters( 'wpcargo_print_invoice_label', __( 'Print Track Result', 'wpcargo') )); ?></a>
 			</div>
 		<?php endif; ?>
 		<?php

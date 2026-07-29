@@ -4,13 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 function wpcargo_email_footer_divider_callback(){
     $footer_image       = WPCARGO_PLUGIN_URL.'admin/assets/images/wpc-email-footer.png';
-    ob_start();
     ?>
     <div class="wpc-footer-devider">
         <img src="<?php echo esc_url( $footer_image ); ?>" style="width:100%;" />
     </div>
     <?php
-    echo ob_get_clean();
 }
 function wpcargo_fields_option_settings_group_callback( $options ){
     require_once( WPCARGO_PLUGIN_PATH.'admin/templates/settings-fields-option.tpl.php' );
@@ -194,7 +192,7 @@ function wpcargo_track_shipment_history_details_tbl_responsive(){
             */
             <?php $counter = 1; ?>
             <?php foreach ( wpcargo_history_fields() as  $value): ?>
-                #wpcargo-history-section table#shipment-history td:nth-of-type(<?php echo $counter; ?>):before { content: "<?php echo esc_html( $value['label'] ); ?>"; }
+                #wpcargo-history-section table#shipment-history td:nth-of-type(<?php echo esc_html($counter); ?>):before { content: "<?php echo esc_html( $value['label'] ); ?>"; }
             <?php $counter++; endforeach; ?>
         }
     </style>
@@ -382,7 +380,7 @@ function wpcargo_shipment_history_map_callback( $shipment_id ){
             country: 'long_name',
             postal_code: 'short_name'
         };
-        var labels = '<?php echo $maplabels; ?>';
+        var labels = '<?php echo esc_html($maplabels); ?>';
         var labelIndex = 0;
         function wpcSHinitMap() {
             geocoder = new google.maps.Geocoder();
@@ -430,8 +428,8 @@ function wpcargo_shipment_history_map_callback( $shipment_id ){
         function codeAddress( geocoder, map, address, flightPlanCoordinates, index, shipmentData, lastAddress ) {
             var wpclabelColor   = '<?php echo ( get_option('shmap_label_color') ) ? esc_html( get_option('shmap_label_color') ) : '#fff' ;  ?>';
             var wpclabelSize    = '<?php echo ( get_option('shmap_label_size') ) ? esc_html( get_option('shmap_label_size') ).'px' : '18px' ;  ?>';
-            var wpcMapMarker    = '<?php echo ( get_option('shmap_marker') ) ? esc_url( get_option('shmap_marker') ) : WPCARGO_PLUGIN_URL.'/admin/assets/images/wpcmarker.png' ;  ?>';
-            var wpcCurrMarker   = '<?php echo apply_filters( 'shmap_current_marker_url', WPCARGO_PLUGIN_URL.'/admin/assets/images/current-map.png' );  ?>';
+            var wpcMapMarker    = '<?php echo ( get_option('shmap_marker') ) ? esc_url( get_option('shmap_marker') ) : esc_url(WPCARGO_PLUGIN_URL.'/admin/assets/images/wpcmarker.png') ;  ?>';
+            var wpcCurrMarker   = '<?php echo esc_url(apply_filters( 'shmap_current_marker_url', WPCARGO_PLUGIN_URL.'/admin/assets/images/current-map.png' ));  ?>';
             geocoder.geocode({'address': address}, function(results, status) {
                 if (status === 'OK') {
                     var geolatlng = { lat: results[0].geometry.location.lat(),  lng: results[0].geometry.location.lng() };
@@ -479,8 +477,8 @@ function wpcargo_track_shipment_status_result( $shimpment_details ){
         $class_status   = strtolower( $shipment_status );
         $class_status   = str_replace(' ', '_', $class_status );
 		?>
-		<div id="shipment-status" class="wpcargo-row <?php echo $class_status;?>" style="text-align:center;">
-			<p id="result-status-header"><?php echo apply_filters( 'wpcargo_track_shipment_status_result_title', esc_html__( 'Shipment Status: ', 'wpcargo' ) ); ?><?php echo esc_html($shipment_status); ?></p>
+		<div id="shipment-status" class="wpcargo-row <?php echo esc_attr($class_status);?>" style="text-align:center;">
+			<p id="result-status-header"><?php echo esc_html(apply_filters( 'wpcargo_track_shipment_status_result_title', __( 'Shipment Status: ', 'wpcargo' ) )); ?><?php echo esc_html($shipment_status); ?></p>
 		</div>
 		<?php
 }
@@ -580,7 +578,7 @@ function wpcargo_invoice_receiver_info_callback( $shipmentDetails ){
     <section id="section-to">
     <?php 
         if( class_exists( 'WPCCF_Fields' ) ){
-            echo $WPCCF_Fields->get_fields_data( 'receiver_info', $shipmentDetails['shipmentID']);
+            echo $WPCCF_Fields->get_fields_data( 'receiver_info', esc_html($shipmentDetails['shipmentID']));
         }else{
             ?>
             <p><?php esc_html_e( 'Receiver Name', 'wpcargo'); ?>: <?php echo esc_html( get_post_meta( $shipmentDetails['shipmentID'], 'wpcargo_receiver_name', true ) ); ?></p>
@@ -636,7 +634,7 @@ function wpcargo_end_invoice_section_callback( $shipmentDetails ){
                             <td>
                                 <?php 
                                     $package_data = array_key_exists( $field_key, $data_value ) ? $data_value[$field_key] : '' ;
-                                    echo is_array( $package_data ) ? implode(',', $package_data ) : esc_html( $package_data ); 
+                                    echo is_array( $package_data ) ? implode(',', esc_html($package_data) ) : esc_html( $package_data ); 
                                 ?>
 
                             </td>
@@ -655,7 +653,7 @@ function wpc_email_settings_navigation(){
 
     $view = sanitize_text_field($_GET['page']);
     ?> 
-      <a class="nav-tab <?php echo ( $view == 'wpcargo-email-settings') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo admin_url().'admin.php?page=wpcargo-email-settings'; ?>" ><?php echo esc_html( wpcargo_client_email_settings_label() ); ?></a>
-  <a class="nav-tab <?php echo ( $view == 'wpcargo-admin-email-settings') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo admin_url().'admin.php?page=wpcargo-admin-email-settings'; ?>" ><?php echo esc_html( wpcargo_admin_email_settings_label() ); ?></a>
+      <a class="nav-tab <?php echo ( $view == 'wpcargo-email-settings') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo esc_url(admin_url().'admin.php?page=wpcargo-email-settings'); ?>" ><?php echo esc_html( wpcargo_client_email_settings_label() ); ?></a>
+  <a class="nav-tab <?php echo ( $view == 'wpcargo-admin-email-settings') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo esc_url(admin_url().'admin.php?page=wpcargo-admin-email-settings'); ?>" ><?php echo esc_html( wpcargo_admin_email_settings_label() ); ?></a>
     <?php 
 }

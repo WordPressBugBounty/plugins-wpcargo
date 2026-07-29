@@ -39,7 +39,6 @@ class WPC_Export_Admin extends WPC_Export{
 			'hide_empty' => 0
 		);
 		$cat_taxonomy = get_categories($tax_args);
-		ob_start();
 		?>
 		<div class="wrap"><div id="icon-tools" class="icon32"></div>
             <?php $this->wpc_ie_header_tab();  ?>
@@ -53,7 +52,7 @@ class WPC_Export_Admin extends WPC_Export{
             </div>
             <div id="ads">
 		    	<a href="http://www.wpcargo.com/product/wpcargo-importexport-add-ons/" target="_blank" class="wpc-documentation">
-				    <div class="wpc-img"> <img src="<?php echo WPCARGO_PLUGIN_URL; ?>/admin/assets/images/documentation.png"> </div>
+				    <div class="wpc-img"> <img src="<?php echo esc_url(WPCARGO_PLUGIN_URL); ?>/admin/assets/images/documentation.png"> </div>
 				    <div class="wpc-desc">
 				      <h3><?php esc_html_e('Purchase', 'wpcargo'); ?> WPCargo Import Export Add-ons</h3>
 				      <p><?php esc_html_e('If you want a more comprehensive and customizable report, purchase', 'wpcargo'); ?> WPCargo Import Export Add-ons.</p>
@@ -62,7 +61,6 @@ class WPC_Export_Admin extends WPC_Export{
 		    </div>
 		</div>
         <?php
-		echo ob_get_clean();
 	}
 	function update_import_option_ajax_request() {
 		// The $_REQUEST contains all the data sent via ajax
@@ -137,7 +135,7 @@ class WPC_Export_Admin extends WPC_Export{
 		// Handle request then generate response using WP_Ajax_Response
 		$term 			= isset( $_GET['term'] ) ? sanitize_text_field( $_GET['term'] ) : '';
 		$metakey 		= apply_filters( 'wpc_report_search_shipper_name_metakey', 'wpcargo_shipper_name' );
-		$results 		= $wpdb->get_col( $wpdb->prepare( "SELECT tbl2.meta_value AS meta_value FROM `$wpdb->posts` AS tbl1 INNER JOIN `$wpdb->postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id WHERE tbl1.post_type LIKE 'wpcargo_shipment' AND tbl2.meta_key LIKE %s AND tbl2.meta_value LIKE %s GROUP BY meta_value", $metakey, '%'.$term.'%' ) );
+		$results 		= $wpdb->get_col( $wpdb->prepare( "SELECT tbl2.meta_value AS meta_value FROM `$wpdb->posts` AS tbl1 INNER JOIN `$wpdb->postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id WHERE tbl1.post_type = 'wpcargo_shipment' AND tbl2.meta_key LIKE %s AND tbl2.meta_value LIKE %s GROUP BY meta_value", $metakey, '%'.$term.'%' ) );
 		wp_send_json( $results );
 		wp_die();
 	}
@@ -146,7 +144,7 @@ class WPC_Export_Admin extends WPC_Export{
 		?>
 		<div class="wpc-ie-tab">
 			<h2 class="nav-tab-wrapper">
-            <a href="<?php echo admin_url( 'edit.php?post_type=wpcargo_shipment&page=wpc-report-export' ); ?>" class="nav-tab<?php if($view == 'wpc-report-export') { ?> nav-tab-active<?php } ?>"><?php esc_html_e("Shipment Reports", 'wpcargo'); ?> </a>
+            <a href="<?php echo esc_url(admin_url( 'edit.php?post_type=wpcargo_shipment&page=wpc-report-export' )); ?>" class="nav-tab<?php if($view == 'wpc-report-export') { ?> nav-tab-active<?php } ?>"><?php esc_html_e("Shipment Reports", 'wpcargo'); ?> </a>
 			</h2>
 		</div>
 		<?php

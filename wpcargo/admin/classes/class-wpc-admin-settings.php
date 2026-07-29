@@ -55,14 +55,14 @@ class WPCargo_Admin_Settings{
 		?>
 		<div class="wpcargo-settings">
 		  <div class="wrap" id="wpc-left">
-		    <h1><?php echo wpcargo_brand_name(); ?> <?php esc_html_e('Settings', 'wpcargo'); ?></h1>
+		    <h1><?php echo esc_html(wpcargo_brand_name()); ?> <?php esc_html_e('Settings', 'wpcargo'); ?></h1>
 		    <?php
 				require_once( WPCARGO_PLUGIN_PATH.'admin/templates/admin-navigation.tpl.php' );
 				require_once( WPCARGO_PLUGIN_PATH.'admin/templates/settings-option.tpl.php' );
 			?>
 			 </div>
 			  <div class="wrap" id="wpc-right"> <a href="http://www.wpcargo.com/documentation/" target="_blank" class="wpc-documentation">
-			    <div class="wpc-img"> <img src="<?php echo WPCARGO_PLUGIN_URL.'/admin/assets/images/documentation.png'; ?>" /> </div>
+			    <div class="wpc-img"> <img src="<?php echo esc_url(WPCARGO_PLUGIN_URL.'/admin/assets/images/documentation.png'); ?>" /> </div>
 			    <div class="wpc-desc">
 			      <h3><?php esc_html_e('Get Started Here', 'wpcargo'); ?></h3>
 			      <p><?php esc_html_e('Documentation', 'wpcargo'); ?></p>

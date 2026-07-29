@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <form method="post" action="options.php">
 	<?php
 	settings_fields( 'wpc_shmap_option_group' );
@@ -47,7 +48,7 @@
 		<tr>
 			<th><?php esc_html_e('Google Map API Key', 'wpcargo' ); ?></th>
 			<td>
-				<input style="width: 380px;" type="text" name="shmap_api" value="<?php echo $shmap_api; ?>">
+				<input style="width: 380px;" type="text" name="shmap_api" value="<?php echo esc_attr($shmap_api); ?>">
 				<p class="description"><?php esc_html_e('Please click here to get Google Map API Key', 'wpcargo' ); ?> <a class="button button-primary button-small" href="https://developers.google.com/maps/documentation/embed/get-api-key" target="_blank"><?php esc_html_e('Get API Key','wpcargo' ); ?></a></p>
 				<p class="description" style="color: #900; font-size: 16px; font-weight: 500;"><?php esc_html_e("Note: Google Map API Key needs to enable the following API's to make it work.", 'wpcargo' ); ?></p>
 				<ol style="font-weight: 500; color: #900;font-style: italic;">
@@ -60,7 +61,7 @@
 		</tr>
 		<tr>
 		<?php if( get_option('shmap_api') ): ?>
-		<th scope="row"><?php _e( 'Point of Orgin', 'wpcargo-pod' ); ?></th>
+		<th scope="row"><?php esc_html_e( 'Point of Orgin', 'wpcargo' ); ?></th>
 			<td>
 				<input type="hidden" name="shmap_longitude" id="shmap_longitude" value="<?php echo esc_html($shmap_longitude); ?>">
 				<input type="hidden" name="shmap_latitude" id="shmap_latitude" value="<?php echo esc_html($shmap_latitude); ?>">
@@ -89,8 +90,19 @@
 			<td>
 				<input type="text" name="shmap_country_restrict" value="<?php echo esc_html($shmap_country_restrict); ?>">
 				<p><i><b><?php 
-					printf( esc_html__( 'Please enter %s compatible country code. This is to limit the results for you chosen country only.', 'wpcargo' ), '<a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank">ISO 3166-1 Alpha-2</a>' );
-					
+					echo wp_kses(
+						__( 
+							'Please enter an <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank" rel="noopener noreferrer">ISO 3166-1 Alpha-2</a> compatible country code. This is to limit the results for your chosen country only.',
+							'wpcargo'
+						),
+						array(
+							'a' => array(
+								'href'   => array(),
+								'target' => array(),
+								'rel'    => array(),
+							),
+						)
+					);
 				?></b></i></p>
 			</td>
 		</tr>
@@ -147,7 +159,7 @@
 </form>
 <?php if( get_option('shmap_api') ): ?>
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_option('shmap_api'); ?>&callback=initialize&libraries=&v=weekly"
+		src="https://maps.googleapis.com/maps/api/js?key=<?php echo esc_attr(get_option('shmap_api')); ?>&callback=initialize&libraries=&v=weekly"
 		defer
 	></script>
 	<script>
@@ -156,7 +168,7 @@
 		var geocoder;
 		function initialize() {
 			geocoder = new google.maps.Geocoder();
-			var geoCooridinates = { lat: <?php echo $shmap_latitude; ?>, lng: <?php echo $shmap_longitude; ?> };
+			var geoCooridinates = { lat: <?php echo esc_html($shmap_latitude); ?>, lng: <?php echo esc_html($shmap_longitude); ?> };
 			var map = new google.maps.Map(document.getElementById('wpcpod-ro-map'), { 
 				zoom: 13, 
 				center: geoCooridinates,

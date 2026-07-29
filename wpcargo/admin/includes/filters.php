@@ -20,7 +20,12 @@ function wpcargo_filter_status() {
 				echo '<option value="">'.esc_html__('-- Select All Status --', 'wpcargo').'</option>';
 					foreach( $shipment_status as $val ){
 						$selected_val = isset($_REQUEST[$status]) && $_REQUEST[$status] == trim( esc_html($val) ) ? 'selected' : '';
-						echo '<option value="'.trim( esc_html($val) ).'" '.$selected_val.'>'.trim( esc_html($val) ).'</option>';
+						echo wp_kses('<option value="'.trim( esc_html($val) ).'" '.$selected_val.'>'.trim( esc_html($val) ).'</option>', array(
+							'option' => array(
+								'value' => array(),
+								'selected' => array()
+							)
+						));
 					}
 			echo '</select>';
 		}
@@ -36,7 +41,12 @@ function wpcargo_filter_status() {
 				echo '<option value="">'.esc_html__('-- Select All Category --', 'wpcargo').'</option>';
 					foreach( $shipment_category as $objShipmentCat ){
 						$selectedCategory = isset($_REQUEST[$shipmentCat]) && $_REQUEST[$shipmentCat] == $objShipmentCat->slug ? 'selected' : '';
-						echo '<option value="'. esc_html( $objShipmentCat->slug ).'" '.$selectedCategory.'>'.esc_html($objShipmentCat->name).' ('.esc_html($objShipmentCat->count).')</option>';
+						echo wp_kses('<option value="'. esc_html( $objShipmentCat->slug ).'" '.$selectedCategory.'>'.esc_html($objShipmentCat->name).' ('.esc_html($objShipmentCat->count).')</option>', array(
+							'option' => array(
+								'value' => array(),
+								'selected' => array()
+							)
+						));
 					}
 			echo '</select>';
 		}
@@ -46,18 +56,33 @@ function wpcargo_filter_status() {
 			foreach($get_wpcargo_agent as $agent_details){
 				$user_fullname = $wpcargo->user_fullname( $agent_details->ID );
 				$selected_val = isset($_REQUEST['cargo_agent']) && $_REQUEST['cargo_agent'] == $agent_details->ID ? 'selected' : '';
-				echo '<option value="'.(int)esc_html($agent_details->ID).'" '.$selected_val.'>'.esc_html($user_fullname).'</option>';
+				echo wp_kses('<option value="'.(int)esc_html($agent_details->ID).'" '.$selected_val.'>'.esc_html($user_fullname).'</option>', array(
+					'option' => array(
+						'value' => array(),
+						'selected' => array()
+					)
+				));
 			}
 			echo '</select>';
 		}
 		// Registered Shipper
 		if(!empty( wpcargo_has_registered_shipper() ) ) {
 			echo '<select name="registered_shipper">';
-				echo '<option value="">'.apply_filters( 'wpcargo_filter_registered_shipper_label', esc_html__('-- All Owners --', 'wpcargo') ).'</option>';
+				echo wp_kses('<option value="">'.apply_filters( 'wpcargo_filter_registered_shipper_label', esc_html__('-- All Owners --', 'wpcargo') ).'</option>', array(
+					'option' => array(
+						'value' => array(),
+						'selected' => array()
+					)
+				));
 				foreach( wpcargo_has_registered_shipper() as $shipper_id ){
 					$user_fullname = apply_filters( 'wpcargo_filter_registered_shipper_option_label', $wpcargo->user_fullname(  $shipper_id ), $shipper_id );
 					$selected_val = isset($_REQUEST['registered_shipper']) && $_REQUEST['registered_shipper'] ==  $shipper_id ? 'selected' : '';
-					echo '<option value="'.(int)esc_html($shipper_id) .'" '.$selected_val.'>'.esc_html($user_fullname).'</option>';
+					echo wp_kses('<option value="'.(int)esc_html($shipper_id) .'" '.$selected_val.'>'.esc_html($user_fullname).'</option>', array(
+						'option' => array(
+							'value' => array(),
+							'selected' => array()
+						)
+					));
 				}
 			echo '</select>';
 		}
@@ -66,11 +91,16 @@ function wpcargo_filter_status() {
 		if(!empty($get_shippers) && is_array($get_shippers)) {
 			$get_wpcargo_shipper = array_unique(array_filter($get_shippers));
 			sort($get_wpcargo_shipper);
-			echo '<select name="'.wpcargo_shipper_meta_filter().'">';
+			echo '<select name="'.esc_html(wpcargo_shipper_meta_filter()).'">';
 				echo '<option value="">'.esc_html__('-- All Shipper --', 'wpcargo').'</option>';
 			foreach($get_wpcargo_shipper as $shipper_details){
 				$selected_val = isset($_REQUEST[wpcargo_shipper_meta_filter()]) && $_REQUEST[wpcargo_shipper_meta_filter()] == $shipper_details ? 'selected' : '';
-				echo '<option value="'.esc_html($shipper_details).'" '.$selected_val.'>'.esc_html($shipper_details).'</option>';
+				echo wp_kses('<option value="'.esc_html($shipper_details).'" '.$selected_val.'>'.esc_html($shipper_details).'</option>', array(
+					'option' => array(
+						'value' => array(),
+						'selected' => array()
+					)
+				));
 			}
 			echo '</select>';
 		}
@@ -79,11 +109,16 @@ function wpcargo_filter_status() {
 		if(!empty($get_receiver) && is_array($get_receiver)) {
 			$get_wpcargo_receiver = array_unique(array_filter($get_receiver));
 			sort($get_wpcargo_receiver);
-			echo '<select name="'.wpcargo_receiver_meta_filter().'">';
+			echo '<select name="'.esc_html(wpcargo_receiver_meta_filter()).'">';
 				echo '<option value="">'.esc_html__('-- All Receiver --', 'wpcargo').'</option>';
 			foreach($get_wpcargo_receiver as $receiver_details){
 				$selected_val = isset($_REQUEST[wpcargo_receiver_meta_filter()]) && $_REQUEST[wpcargo_receiver_meta_filter()] == $receiver_details ? 'selected' : '';
-				echo '<option value="'.esc_html($receiver_details).'" '.$selected_val.'>'.esc_html($receiver_details).'</option>';
+				echo wp_kses('<option value="'.esc_html($receiver_details).'" '.$selected_val.'>'.esc_html($receiver_details).'</option>', array(
+					'option' => array(
+						'value' => array(),
+						'selected' => array()
+					)
+				));
 			}
 			echo '</select>';
 		}

@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <?php
     $barcode_height     = !empty(wpcargo_print_barcode_sizes()['waybill']['height'])? wpcargo_print_barcode_sizes()['waybill']['height'] : 80;
     $barcode_width      = !empty(wpcargo_print_barcode_sizes()['waybill']['height'])? wpcargo_print_barcode_sizes()['waybill']['width'] : 250;
@@ -13,7 +14,7 @@
 ?>
 <?php do_action('wpc_label_before_header_information', $shipmentDetails['shipmentID'] ); ?>
 <?php foreach( $copies as $key => $label ): ?>
-    <div id="<?php echo $key; ?>" class="copy-section">
+    <div id="<?php echo esc_attr($key); ?>" class="copy-section">
         <table class="shipment-header-table" cellpadding="0" cellspacing="0" style="border: 1px solid #000;width: 100%;margin:0;padding:0;">
             <tr>
                 <td rowspan="3" class="align-center">

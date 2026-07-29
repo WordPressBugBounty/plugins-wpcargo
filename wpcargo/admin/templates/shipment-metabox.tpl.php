@@ -1,5 +1,6 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div id="shipment-details">
-	<h1><?php echo apply_filters('wpc_shipment_details_label', esc_html__('Shipment Details', 'wpcargo' ) ); ?></h1>
+	<h1><?php echo esc_html(apply_filters('wpc_shipment_details_label', __('Shipment Details', 'wpcargo' ) )); ?></h1>
 	<?php do_action('wpc_before_shipment_details_table', $post->ID); ?>
 	<table class="wpcargo form-table">
 		<?php do_action('wpc_before_shipment_details_metabox', $post->ID); ?>
@@ -10,7 +11,7 @@
 					<select name="wpcargo_type_of_shipment">
 						<option value=""><?php esc_html_e('-- Select One --', 'wpcargo' ); ?></option>
 						<?php foreach ( $shipment_type_list as $val) { ?>
-							<option value="<?php echo trim( esc_html( $val ) ); ?>" <?php echo ( trim( esc_html( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_type_of_shipment', true) )) ? 'selected' : '' ; ?>><?php echo trim( esc_html( $val ) ); ?></option>
+							<option value="<?php echo esc_html(trim( $val ) ); ?>" <?php echo ( esc_html( trim( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_type_of_shipment', true) )) ? 'selected' : '' ; ?>><?php echo esc_html( trim( $val ) ); ?></option>
 						<?php } ?>
 					</select>
 				<?php } ?>
@@ -18,7 +19,7 @@
 					<span class="meta-box error">
 						<strong>
 							<?php esc_html__('No Selection setup, Please add selection', 'wpcargo'); ?>
-							<a href="<?php echo admin_url().'/admin.php?page=wpcargo-settings'; ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
+							<a href="<?php echo esc_url(admin_url().'/admin.php?page=wpcargo-settings'); ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
 						</strong>
 					</span>
 				<?php endif; ?>
@@ -43,7 +44,7 @@
 					<select name="wpcargo_mode_field">
 						<option value=""><?php esc_html_e('-- Select One --', 'wpcargo' ); ?></option>
 						<?php foreach ( $shipment_mode_list as $val) { ?>
-							<option value="<?php echo trim( esc_html( $val ) ); ?>" <?php echo ( trim( esc_html( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_mode_field', true) )) ? 'selected' : '' ; ?>><?php echo trim( esc_html( $val ) ); ?></option>
+							<option value="<?php echo esc_html( trim( $val ) ); ?>" <?php echo ( esc_html( trim( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_mode_field', true) )) ? 'selected' : '' ; ?>><?php echo esc_html( trim( $val ) ); ?></option>
 						<?php } ?>
 					</select>
 				<?php } ?>
@@ -51,7 +52,7 @@
 					<span class="meta-box error">
 						<strong>
 							<?php esc_html__('No Selection setup, Please add selection', 'wpcargo'); ?>
-							<a href="<?php echo admin_url().'/admin.php?page=wpcargo-settings'; ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
+							<a href="<?php echo esc_url(admin_url().'/admin.php?page=wpcargo-settings'); ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
 						</strong>
 					</span>
 				<?php endif; ?>
@@ -72,7 +73,7 @@
 					<select name="payment_wpcargo_mode_field">
 						<option value=""><?php esc_html_e('-- Select One --', 'wpcargo' ); ?></option>
 						<?php foreach ( $payment_mode_list as $val) { ?>
-							<option value="<?php echo trim( esc_html( $val ) ); ?>" <?php echo ( trim( esc_html( $val ) ) == esc_html( get_post_meta($post->ID, 'payment_wpcargo_mode_field', true) )) ? 'selected' : '' ; ?>> <?php echo trim( esc_html( $val ) ); ?> </option>
+							<option value="<?php echo esc_html( trim( $val ) ); ?>" <?php echo ( esc_html( trim( $val ) ) == esc_html( get_post_meta($post->ID, 'payment_wpcargo_mode_field', true) )) ? 'selected' : '' ; ?>> <?php echo esc_html( trim( $val ) ); ?> </option>
 						<?php } ?>
 					</select>
 				<?php } ?>
@@ -80,7 +81,7 @@
 					<span class="meta-box error">
 						<strong>
 							<?php esc_html__('No Selection setup, Please add selection', 'wpcargo'); ?>
-							<a href="<?php echo admin_url().'/admin.php?page=wpcargo-settings'; ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
+							<a href="<?php echo esc_url(admin_url().'/admin.php?page=wpcargo-settings'); ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
 						</strong>
 					</span>
 				<?php endif; ?>
@@ -96,7 +97,7 @@
 					<select name="wpcargo_carrier_field">
 						<option value=""><?php esc_html_e('-- Select One --', 'wpcargo' ); ?></option>
 						<?php foreach ( $shipment_carrier_list as $val ) { ?>
-							<option value="<?php echo trim( esc_html( $val ) ); ?>" <?php echo ( trim( esc_html( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_carrier_field', true) )) ? 'selected' : '' ; ?> ><?php echo trim( esc_html( $val ) ); ?></option>
+							<option value="<?php echo esc_html( trim( $val ) ); ?>" <?php echo ( esc_html( trim( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_carrier_field', true) )) ? 'selected' : '' ; ?> ><?php echo esc_html( trim( $val ) ); ?></option>
 						<?php } ?>
 					</select>
 				<?php } ?>
@@ -104,7 +105,7 @@
 					<span class="meta-box error">
 						<strong>
 							<?php esc_html__('No Selection setup, Please add selection', 'wpcargo'); ?>
-							<a href="<?php echo admin_url().'/admin.php?page=wpcargo-settings'; ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
+							<a href="<?php echo esc_url(admin_url().'/admin.php?page=wpcargo-settings'); ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
 						</strong>
 					</span>
 				<?php endif; ?>
@@ -128,7 +129,7 @@
 					<select name="wpcargo_origin_field">
 						<option value=""><?php esc_html_e('-- Select One --', 'wpcargo' ); ?></option>
 						<?php foreach ( $shipment_country_org_list as $val) { ?>
-							<option value="<?php echo trim( esc_html( $val ) ); ?>" <?php echo ( trim( esc_html( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_origin_field', true) )) ? 'selected' : '' ; ?> ><?php echo trim( esc_html( $val ) ); ?></option>
+							<option value="<?php echo esc_html( trim( $val ) ); ?>" <?php echo ( esc_html( trim( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_origin_field', true) )) ? 'selected' : '' ; ?> ><?php echo esc_html( trim( $val ) ); ?></option>
 						<?php } ?>
 					</select>
 				<?php } ?>
@@ -136,7 +137,7 @@
 					<span class="meta-box error">
 						<strong>
 							<?php esc_html__('No Selection setup, Please add selection', 'wpcargo'); ?>
-							<a href="<?php echo admin_url().'/admin.php?page=wpcargo-settings'; ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
+							<a href="<?php echo esc_url(admin_url().'/admin.php?page=wpcargo-settings'); ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
 						</strong>
 					</span>
 				<?php endif; ?>
@@ -149,7 +150,7 @@
 					<select id="dest_1" name="wpcargo_destination">
 						<option value=""><?php esc_html_e('-- Select One --', 'wpcargo' ); ?></option>
 						<?php foreach ( $shipment_country_des_list as $val) { ?>
-							<option value="<?php echo trim( esc_html( $val ) ); ?>" <?php echo ( trim( esc_html( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_destination', true) )) ? 'selected' : '' ; ?> ><?php echo trim( esc_html( $val ) ); ?></option>
+							<option value="<?php echo esc_html( trim( $val ) ); ?>" <?php echo ( esc_html( trim( $val ) ) == esc_html( get_post_meta($post->ID, 'wpcargo_destination', true) )) ? 'selected' : '' ; ?> ><?php echo esc_html( trim( $val ) ); ?></option>
 						<?php } ?>
 					</select>
 				<?php } ?>
@@ -157,7 +158,7 @@
 					<span class="meta-box error">
 						<strong>
 							<?php esc_html__('No Selection setup, Please add selection', 'wpcargo'); ?>
-							<a href="<?php echo admin_url().'/admin.php?page=wpcargo-settings'; ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
+							<a href="<?php echo esc_url(admin_url().'/admin.php?page=wpcargo-settings'); ?>" ><?php esc_html__('here.', 'wpcargo'); ?></a>
 						</strong>
 					</span>
 				<?php endif; ?>

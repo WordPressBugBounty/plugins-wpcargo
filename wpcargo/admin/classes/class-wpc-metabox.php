@@ -44,7 +44,7 @@ class WPCargo_Metabox {
 		}
 		?>
 		<div class="misc-pub-section wpc-status-section" style="background-color: #d4d4d4; border-top: 1px solid #757575;border-bottom: 1px solid #757575;">
-			<h3 style="border-bottom: 1px solid #757575; padding-bottom: 6px;"><?php esc_html_e( 'Current Status', 'wpcargo' ); ?>: <?php echo wpcargo_html_value( $current_status ); ?></h3>
+			<h3 style="border-bottom: 1px solid #757575; padding-bottom: 6px;"><?php esc_html_e( 'Current Status', 'wpcargo' ); ?>: <?php echo wp_kses_post(wpcargo_html_value( $current_status )); ?></h3>
 			<?php foreach( wpcargo_history_fields() as $history_name => $history_value ): ?>
 				<p>
 					<?php
@@ -59,7 +59,32 @@ class WPCargo_Metabox {
 						}
 						if( $history_name != 'updated-name' ){
 							echo '<label for="'.esc_html($history_name).'">'.esc_html($history_value['label']).'</label>';
-							echo wpcargo_field_generator( $history_value, $history_name, $value, 'history-update '.$picker_class.' status_'.$history_name );
+							echo wp_kses(wpcargo_field_generator( $history_value, $history_name, $value, 'history-update '.$picker_class.' status_'.$history_name ), array(
+								'p' => array(
+									'class' => array()
+								),
+								'label' => array(
+									'for' => array()
+								),
+								'input' => array(
+									'id' => array(),
+									'class' => array(),
+									'type' => array(),
+									'name' => array(),
+									'value' => array(),
+									'autocomplete' => array(),
+								),
+								'select' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+								),
+								'textarea' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+								),
+							));
 						}
 					?>
 				</p>

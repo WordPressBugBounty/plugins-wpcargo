@@ -333,24 +333,20 @@ class WPC_Export{
 					jQuery(document).ready(function($) {
 						setTimeout(function(){
 							$('body .wpcargo-loading').remove();
-							window.location='<?php echo $filename_unique; ?>';
+							window.location='<?php echo esc_html($filename_unique); ?>';
 						}, 3000);
 					});
 				</script>
-			<?
+			<?php
 			else:
-			ob_start();
 			?>
-				<div class="notice notice-error">
-                    <p><?php esc_html_e( 'No Result Found!', 'wpcargo' ); ?></p>
-				</div>
+				<div class="notice notice-error"><p><?php esc_html_e( 'No Result Found!', 'wpcargo' ); ?></p></div>
 				<script>
 					jQuery(document).ready(function($) {
 						$('body .wpcargo-loading').remove();
 					});
 				</script>
 			<?php
-			echo ob_get_clean();
 			endif;
 			wp_reset_postdata();
 		}

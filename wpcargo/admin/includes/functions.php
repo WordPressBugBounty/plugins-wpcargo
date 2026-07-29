@@ -84,27 +84,44 @@ function wpcargo_trackform_shipment_number($shipment_number)
     return $results;
 }
 
-function wpcargo_trackform_multiple_shipment_numbers($shipment_numbers)
-{
+function wpcargo_trackform_multiple_shipment_numbers( $shipment_numbers ) {
 
-    global $wpdb;
+	global $wpdb;
 
-    $shipment_numbers_array_string = '(';
+	$shipment_numbers = array_map(
+		function( $shipment_number ) {
+			return sanitize_text_field( trim( $shipment_number ) );
+		},
+		$shipment_numbers
+	);
 
-    for ($i = 0; $i < count($shipment_numbers); $i++) {
+	// Remove empty values.
+	$shipment_numbers = array_filter( $shipment_numbers );
 
-        $shipment_numbers_array_string .= "'" . $shipment_numbers[$i] . "'";
+	if ( empty( $shipment_numbers ) ) {
+		return array();
+	}
 
-        if ($i < (count($shipment_numbers) - 1)) {
-            $shipment_numbers_array_string .= ', ';
-        }
-    }
+	// Generate: %s, %s, %s
+	$placeholders = implode( ', ', array_fill( 0, count( $shipment_numbers ), '%s' ) );
 
-    $shipment_numbers_array_string .= ')';
+	$sql = "
+		SELECT ID
+		FROM {$wpdb->posts}
+		WHERE post_title IN ( {$placeholders} )
+		AND post_status = 'publish'
+		AND post_type = 'wpcargo_shipment'
+	";
 
-    $sql = apply_filters('wpcargo_trackform_multiple_shipment_numbers_query', "SELECT `ID` FROM `{$wpdb->prefix}posts` WHERE post_title IN {$shipment_numbers_array_string} AND `post_status` = 'publish' AND `post_type` = 'wpcargo_shipment'", $shipment_numbers_array_string);
-    $results = $wpdb->get_results($sql, ARRAY_A);
-    return $results;
+	$sql = $wpdb->prepare( $sql, $shipment_numbers );
+
+	$sql = apply_filters(
+		'wpcargo_trackform_multiple_shipment_numbers_query',
+		$sql,
+		$shipment_numbers
+	);
+
+	return $wpdb->get_results( $sql, ARRAY_A );
 }
 
 function wpcargo_get_postmeta($post_id = '', $metakey = '', $type = '')
@@ -693,7 +710,7 @@ function wpcargo_assign_shipment_email($post_id, $user_id, $designation)
     ob_start();
 ?>
     <p><?php esc_html_e('Dear', 'wpcargo'); ?> <?php echo esc_html($wpcargo->user_fullname($user_id)); ?>,</p>
-    <p><?php echo esc_html__('Shipment number ', 'wpcargo') . get_the_title($post_id) . esc_html__(' has been assigned to you.', 'wpcargo'); ?></p>
+    <p><?php echo esc_html__('Shipment number ', 'wpcargo') . esc_html(get_the_title($post_id)) . esc_html__(' has been assigned to you.', 'wpcargo'); ?></p>
 <?php
     $mail_content   = ob_get_clean();
     $mail_content   = apply_filters('wpcargo_assign_mail_content', $mail_content, $post_id, $user_id, $designation);
@@ -824,14 +841,14 @@ function wpcargo_display_multiple_results_for_multiple_tracking($shipment_ids)
             $class_status   = str_replace(' ', '_', $class_status);
             do_action('wpcargo_before_search_result'); ?>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="heading<?php echo ($i) ?>">
-                    <button class="wpcargo-min-width-btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo ($i) ?>" aria-expanded="false" aria-controls="collapse<?php echo ($i) ?>">
-                        <?php echo ($shipment->post_title); ?>
+                <h2 class="accordion-header" id="heading<?php echo esc_attr($i) ?>">
+                    <button class="wpcargo-min-width-btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo esc_attr($i) ?>" aria-expanded="false" aria-controls="collapse<?php echo esc_attr($i) ?>">
+                        <?php echo esc_html($shipment->post_title); ?>
                     </button>
                 </h2>
-                <div id="collapse<?php echo ($i) ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo ($i) ?>" data-bs-parent="#result-accordion">
+                <div id="collapse<?php echo esc_attr($i) ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo esc_attr($i) ?>" data-bs-parent="#result-accordion">
                     <div class="accordion-body">
-                        <div id="wpcargo-result-print" class="wpcargo-wrap-details wpcargo-container <?php echo $class_status; ?>">
+                        <div id="wpcargo-result-print" class="wpcargo-wrap-details wpcargo-container <?php echo esc_attr($class_status); ?>">
                             <?php
                             do_action('wpcargo_print_btn');
                             do_action('wpcargo_before_track_details', $shipment);
@@ -875,7 +892,7 @@ function wpcargo_display_single_result_for_multiple_tracking($shipment_ids)
     $class_status   = str_replace(' ', '_', $class_status);
     do_action('wpcargo_before_search_result');
     do_action('wpcargo_print_btn'); ?>
-    <div id="wpcargo-result-print" class="wpcargo-wrap-details wpcargo-container <?php echo $class_status; ?>">
+    <div id="wpcargo-result-print" class="wpcargo-wrap-details wpcargo-container <?php echo esc_attr($class_status); ?>">
         <?php
         do_action('wpcargo_before_track_details', $shipment);
         do_action('wpcargo_track_header_details', $shipment);

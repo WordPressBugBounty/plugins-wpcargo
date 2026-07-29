@@ -53,7 +53,7 @@ $cf_fields = $wpdb->get_results(" * FROM ".$wpdb->prefix."wpcargo_custom_fields 
 						while ( $shipment_query->have_posts() ) : $shipment_query->the_post();
 						?>
 						 <tr>
-						 	<td ><?php echo get_the_title(); ?></td>
+						 	<td ><?php echo esc_html(get_the_title()); ?></td>
 								<?php	
 								if( !empty( $cf_fields ) ){						
 									foreach( $cf_fields as $field ) {
@@ -64,7 +64,7 @@ $cf_fields = $wpdb->get_results(" * FROM ".$wpdb->prefix."wpcargo_custom_fields 
 									}
 								}							
 								?>							
-							<td><a class="view-shipment" href="#" data-id="<?php echo get_the_ID(); ?>"><?php esc_html_e('View Details', 'wpcargo'); ?></a></td>	
+							<td><a class="view-shipment" href="#" data-id="<?php echo esc_html(get_the_ID()); ?>"><?php esc_html_e('View Details', 'wpcargo'); ?></a></td>	
 						 </tr>
 						<?php
 						endwhile;
@@ -74,6 +74,6 @@ $cf_fields = $wpdb->get_results(" * FROM ".$wpdb->prefix."wpcargo_custom_fields 
 				?>
 			</tbody>		
 		</table>
-		<?php echo wpcargo_pagination( array( 'custom_query' => $shipment_query ) ); ?>	
+		<?php echo wp_kses(wpcargo_pagination( array( 'custom_query' => $shipment_query ) ), 'post'); ?>	
 	</div>	
 </div>		

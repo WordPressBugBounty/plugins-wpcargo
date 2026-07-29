@@ -1,5 +1,6 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div id="shipper-details" class="one-half first">
-    <h1><?php echo apply_filters('wpc_shipper_details_label',esc_html__('Shipper Details', 'wpcargo' ) ); ?></h1>
+    <h1><?php echo esc_html(apply_filters('wpc_shipper_details_label', __('Shipper Details', 'wpcargo' ) )); ?></h1>
     <?php do_action('wpc_before_shipper_details_table', $post->ID); ?>
     <table class="wpcargo form-table">
         <?php do_action('wpc_before_shipper_details_metabox', $post->ID); ?>

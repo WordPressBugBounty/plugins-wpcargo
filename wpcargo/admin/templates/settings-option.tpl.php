@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <form method="post" action="options.php">
 	<style>
 	<?php
@@ -32,7 +33,7 @@
 			<th scope="row"><?php esc_html_e( 'Add Shipment Logo', 'wpcargo' ) ; ?></th>
 			<td>
 				<input type="text" name='wpcargo_option_settings[settings_shipment_ship_logo]' id="image-chooser" value="<?php echo esc_html($options['settings_shipment_ship_logo']); ?>"> 
-				<p class="description" style="font-size: 10px;"><?php _e('Note: Prefered logo size 190px X 60px', 'wpcargo' ); ?></p>
+				<p class="description" style="font-size: 10px;"><?php esc_html_e('Note: Prefered logo size 190px X 60px', 'wpcargo' ); ?></p>
 				<a id="choose-image" class="button" ><?php esc_html_e( 'Upload Logo', 'wpcargo' ) ; ?></a>
 				<script>
 				jQuery(document).ready(function($){

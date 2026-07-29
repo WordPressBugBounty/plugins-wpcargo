@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div  class="wpc-sh-wrap">
 	<table id="shipment-history" class="wpc-shipment-history" style="width:100%">
 		<thead>

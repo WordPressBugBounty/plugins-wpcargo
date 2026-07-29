@@ -6,11 +6,11 @@ Tags: transportation management, status tracking, delivery calculator, shipment 
 Author: WPTaskforce.com
 Plugin URI: https://www.wptaskforce.com/
 Author URI: https://www.wptaskforce.com
-Tested up to: 6.8.1
+Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 8.0.3
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Stable tag: 8.0.4
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 WPCargo is a track &amp; trace system for courier, courier script, parcel, balikbayan system, shipment and transportation management system, ideal solution for freight forwarder, customs broker, balikbayan forwarder, importer, exporter, supplier, shipper, overseas agent, transporter, &amp; warehouse operator. WPCargo helps manage operations, customers, drivers, quotation, form, branch, and employees. WPCargo is developed by  WPTaskforce.com a website and design agency in Iloilo City Philippines.
 
@@ -145,6 +145,9 @@ Single Page with results:[wpcargo_trackform]
 3. Shipment Results
 
 == Changelog ==
+== 8.0.4 ==
+- Fixed SQL Injection vulnerability on multi-track page
+
 == 8.0.3 ==
 - Fixed broken access control vulnerability
 

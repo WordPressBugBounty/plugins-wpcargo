@@ -24,7 +24,7 @@ $pickup_date  				      	= wpcargo_get_postmeta( $shipment_id, 'wpcargo_pickup_d
 $shipment_pickup_time  				= wpcargo_get_postmeta( $shipment_id, 'wpcargo_pickup_time_picker' );
 ?>
 <div id="print-shipment-info" class="wpcargo-row print-section">
-	<p id="print-receiver-header" class="header-title"><strong><?php echo apply_filters('result_shipment_details', esc_html__('Shipment Information', 'wpcargo')); ?></strong></p>
+	<p id="print-receiver-header" class="header-title"><strong><?php echo esc_html(apply_filters('result_shipment_details', __('Shipment Information', 'wpcargo'))); ?></strong></p>
 	<div class="one-third first">
 		<p class="wpcargo-label"><?php esc_html_e('Origin:', 'wpcargo') . ''; ?></p>
 		<p class="wpcargo-label-info"><?php echo esc_html($shipment_origin); ?></p>
@@ -36,7 +36,7 @@ $shipment_pickup_time  				= wpcargo_get_postmeta( $shipment_id, 'wpcargo_pickup
 	<div class="one-third">
 		<p class="wpcargo-label"><?php esc_html_e('Status:', 'wpcargo'); ?></p>
 		<p class="wpcargo-label-info">
-			<span class="<?php echo str_replace( ' ','_', strtolower( esc_html($wpcargo_status) ) ); ?>" ><?php  echo esc_html($wpcargo_status); ?></span>
+			<span class="<?php echo esc_html(str_replace( ' ','_', strtolower( $wpcargo_status) ) ); ?>" ><?php  echo esc_html($wpcargo_status); ?></span>
 		</p>
 	</div>
 	<div class="one-third first">

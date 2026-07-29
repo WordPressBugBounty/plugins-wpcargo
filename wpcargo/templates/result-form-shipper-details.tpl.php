@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <?php
 	$shipper_name		= wpcargo_get_postmeta( $shipment->ID, 'wpcargo_shipper_name' );
 	$shipper_address	= wpcargo_get_postmeta( $shipment->ID, 'wpcargo_shipper_address' );
@@ -10,7 +11,7 @@
 ?>
 <div id="shipper-info" class="wpcargo-row">
     <div class="wpcargo-col-md-6 detail-section">
-            <p id="shipper-header" class="header-title"><strong><?php echo apply_filters('result_shipper_address', esc_html__('Shipper Information', 'wpcargo')); ?></strong></p>
+            <p id="shipper-header" class="header-title"><strong><?php echo esc_html(apply_filters('result_shipper_address', __('Shipper Information', 'wpcargo'))); ?></strong></p>
             <?php do_action( 'wpcargo_before_track_shipper_data', $shipment ); ?>
             <p class="shipper details"><?php echo esc_html( $shipper_name ); ?><br />
             <?php echo esc_html( $shipper_address ); ?><br />
@@ -19,7 +20,7 @@
             <?php do_action( 'wpcargo_after_track_shipper_data', $shipment ); ?>
     </div>
     <div class="wpcargo-col-md-6 detail-section">
-            <p id="receiver-header" class="header-title"><strong><?php echo apply_filters('result_receiver_address', esc_html__('Receiver Information', 'wpcargo')); ?></strong></p>
+            <p id="receiver-header" class="header-title"><strong><?php echo esc_html(apply_filters('result_receiver_address', __('Receiver Information', 'wpcargo'))); ?></strong></p>
             <?php do_action( 'wpcargo_before_track_receiver_data', $shipment ); ?>
             <p class="receiver details"><?php echo esc_html( $receiver_name ); ?><br />
             <?php echo esc_html( $receiver_address ); ?><br />

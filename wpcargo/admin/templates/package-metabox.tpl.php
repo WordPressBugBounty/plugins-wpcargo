@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div class="wpc-mp-wrap">
 	<?php $packages = wpcargo_get_package_data( $shipment->ID ); ?>
 	<table id="wpcargo-package-table" class="wpc-multiple-package wpc-repeater">
@@ -14,7 +15,7 @@
 				<th>&nbsp;</th>
 			</tr>
 		</thead>
-		<tbody data-repeater-list="<?php echo WPCARGO_PACKAGE_POSTMETA; ?>">
+		<tbody data-repeater-list="<?php echo esc_attr(WPCARGO_PACKAGE_POSTMETA); ?>">
 			<?php if( !empty( $packages ) && is_array($packages) ): ?>
 				<?php foreach ( $packages as $data_key => $data_value): ?>
 				<tr data-repeater-item class="wpc-mp-tr">

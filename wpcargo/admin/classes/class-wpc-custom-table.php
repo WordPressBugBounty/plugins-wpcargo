@@ -6,15 +6,15 @@ add_filter('manage_wpcargo_shipment_posts_columns' , 'set_default_wpcargo_column
 function set_default_wpcargo_columns($columns) {
     $get_the_wpcargo_tbl = array(
 		'cb' 					=> '<input type="checkbox" />',
-		'title' 				=> __( apply_filters( 'wpc_admin_tbl_list_tracking_number', 'Tracking Number' ), 'wpcargo'),
-		'wpcargo_category' 		=> __( apply_filters( 'wpc_admin_tbl_list_category', 'Category' ), 'wpcargo'),
-		'registered_shipper' 	=> __( apply_filters( 'wpc_admin_tbl_registered_shipper', 'Shipment Owner' ), 'wpcargo'),
-		'agent_fields' 			=> __( apply_filters( 'wpc_admin_tbl_list_agent', 'Agent' ), 'wpcargo'),
+		'title' 				=> apply_filters( 'wpc_admin_tbl_list_tracking_number', __('Tracking Number', 'wpcargo') ),
+		'wpcargo_category' 		=> apply_filters( 'wpc_admin_tbl_list_category', __('Category', 'wpcargo') ),
+		'registered_shipper' 	=> apply_filters( 'wpc_admin_tbl_registered_shipper', __('Shipment Owner', 'wpcargo') ),
+		'agent_fields' 			=> apply_filters( 'wpc_admin_tbl_list_agent', __('Agent', 'wpcargo') ),
 		wpcargo_shipper_meta_filter() 	=> wpcargo_shipper_label_filter(),
 		wpcargo_receiver_meta_filter() => wpcargo_receiver_label_filter(),
-		'wpcargo_date' 			=> __( apply_filters( 'wpc_admin_tbl_list_date', 'Date' ), 'wpcargo'),
-		'wpcargo_status' 		=> __( apply_filters( 'wpc_admin_tbl_list_status', 'Status' ), 'wpcargo'),
-		'wpcargo_actions' 		=> __( apply_filters( 'wpc_admin_tbl_list_action', 'Actions' ), 'wpcargo'),
+		'wpcargo_date' 			=> apply_filters( 'wpc_admin_tbl_list_date', __('Date', 'wpcargo') ),
+		'wpcargo_status' 		=> apply_filters( 'wpc_admin_tbl_list_status', __('Status', 'wpcargo') ),
+		'wpcargo_actions' 		=> apply_filters( 'wpc_admin_tbl_list_action', __('Actions', 'wpcargo') ),
     );
     $get_the_wpcargo_tbl 		= apply_filters('default_wpcargo_columns', $get_the_wpcargo_tbl );
 	return $get_the_wpcargo_tbl;
@@ -151,7 +151,7 @@ function wpcargo_bulk_update_status( $column_name,  $screen_post_type ){
 					            ?>
 					        </select>
 					    <?php else: ?>
-					        <p class="description"><?php esc_html_e( 'No Shipment Status Found.', 'wpcargo' ) ?> <a href="<?php echo admin_url('admin.php?page=wpcargo-settings'); ?>"><?php esc_html_e( 'Add Shipment Status', 'wpcargo' ) ?></a></p>
+					        <p class="description"><?php esc_html_e( 'No Shipment Status Found.', 'wpcargo' ) ?> <a href="<?php echo esc_url(admin_url('admin.php?page=wpcargo-settings')); ?>"><?php esc_html_e( 'Add Shipment Status', 'wpcargo' ) ?></a></p>
 					    <?php endif; ?>
 					    <p> <textarea style="width:100%;" class="remarks" name="status_remarks" placeholder="<?php esc_html_e( 'Remarks', 'wpcargo' ); ?>" ></textarea>
 					</div>

@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <?php
 	$shipment_origin  					= wpcargo_get_postmeta( $shipment->ID, 'wpcargo_origin_field' );
 	$wpcargo_status   					= esc_html( get_post_meta( $shipment->ID, 'wpcargo_status', true) );
@@ -21,7 +22,7 @@
 ?>
 <div id="shipment-info" class="wpcargo-row detail-section">
     <div class="wpcargo-col-md-12">
-    <p id="shipment-information-header" class="header-title"><strong><?php echo apply_filters('result_shipment_information', esc_html__('Shipment Information', 'wpcargo')); ?></strong></p></div>
+    <p id="shipment-information-header" class="header-title"><strong><?php echo esc_html(apply_filters('result_shipment_information', __('Shipment Information', 'wpcargo'))); ?></strong></p></div>
     <?php do_action( 'wpcargo_before_track_shipment_info_data', $shipment ); ?>
 	<div class="wpcargo-col-md-4">
     	<p class="wpcargo-label"><?php esc_html_e('Origin:', 'wpcargo') . ''; ?></p>
@@ -33,7 +34,7 @@
     </div>
     <div class="wpcargo-col-md-4">
     	<p class="wpcargo-label"><?php esc_html_e('Status:', 'wpcargo'); ?></p>
-        <p class="wpcargo-label-info"><span class="<?php echo str_replace( ' ','_', strtolower( esc_html( $wpcargo_status ) ) ); ?>" ><?php  echo esc_html( $wpcargo_status ); ?></span></p>
+        <p class="wpcargo-label-info"><span class="<?php echo esc_html( str_replace( ' ','_', strtolower( $wpcargo_status ) ) ); ?>" ><?php  echo esc_html( $wpcargo_status ); ?></span></p>
     </div>
     <div class="wpcargo-col-md-4">
     	<p class="wpcargo-label"><?php  esc_html_e('Destination:', 'wpcargo'); ?></p>

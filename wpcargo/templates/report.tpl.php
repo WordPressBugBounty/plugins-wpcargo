@@ -1,4 +1,5 @@
-<form id="wpc-ie-form" method="POST" action="<?php echo admin_url(); ?>edit.php?post_type=wpcargo_shipment&page=wpc-report-export" >
+<?php if(!defined('ABSPATH')) { exit; } ?>
+<form id="wpc-ie-form" method="POST" action="<?php echo esc_url(admin_url()); ?>edit.php?post_type=wpcargo_shipment&page=wpc-report-export" >
 			<?php wp_nonce_field( 'wpc_import_ie_results_callback', 'wpc_ie_nonce' ); ?>
             <p><strong class="left-lbl"><?php esc_html_e('Shipper Name:','wpcargo'); ?></strong> <input id="search-shipper" type="text" name="search-shipper" value="<?php echo isset($_REQUEST['search-shipper']) ? esc_html( $_REQUEST['search-shipper'] ) : '';  ?>" /></p>
             <?php if( !empty($users) && !is_wpcargo_client() ): ?>
@@ -7,7 +8,7 @@
 					<select name="registered_shipper" class="form-control browser-default custom-select" id="registered_shipper">
 						<option value=""><?php esc_html_e('-- Registered Shipper --', 'wpcargo' ); ?></option>
 						<?php foreach( $users as $user ): ?>
-							<option value="<?php  echo $user->ID; ?>" <?php selected( (int)esc_html( $registered_shipper ), $user->ID ); ?> ><?php echo esc_html( $wpcargo->user_fullname( $user->ID ) ); ?></option>
+							<option value="<?php  echo esc_attr($user->ID); ?>" <?php selected( (int)esc_html( $registered_shipper ), $user->ID ); ?> ><?php echo esc_html( $wpcargo->user_fullname( $user->ID ) ); ?></option>
 						<?php endforeach; ?>      
 					</select>
 				</p>

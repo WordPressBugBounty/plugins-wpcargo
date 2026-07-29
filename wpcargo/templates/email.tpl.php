@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div class="wpc-email-notification-wrap" style="width: 100%; font-family: sans-serif;">
     <div class="wpc-email-notification" style="padding: 16px; background: #efefef;">
         <div class="wpc-email-template" style="background: #fff; width: 460px; margin: 0 auto; padding: 2em">

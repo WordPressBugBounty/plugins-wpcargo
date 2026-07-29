@@ -7,7 +7,6 @@ function view_shipment_details_callback(){
 	$shipment 		= new stdClass;
 	$shipment->ID 	= esc_html( $shipment_id );
 	$shipment->post_title = esc_html( get_the_title( $shipment_id ) );
-	ob_start();
 	?>
 	<div id="wpcargo-result">
 		<div id="wpcargo-result-wrapper" class="wpcargo-wrap-details container">
@@ -26,7 +25,6 @@ function view_shipment_details_callback(){
 		</div>
 	</div>
 	<?php
-	echo ob_get_clean();
 	wp_die();
 }
 add_action('wp_ajax_view_shipment_details', 'view_shipment_details_callback' );

@@ -1,4 +1,5 @@
-<h1><?php echo wpcargo_client_account_settings_label(); ?></h1>
+<?php if(!defined('ABSPATH')) { exit; } ?>
+<h1><?php echo esc_html(wpcargo_client_account_settings_label()); ?></h1>
 <form method="POST" action="options.php" enctype="multipart/form-data">
     <?php settings_fields( 'wpcargo-ca-settings-group' ); ?>
     <?php do_settings_sections( 'wpcargo-ca-settings-group' ); ?>

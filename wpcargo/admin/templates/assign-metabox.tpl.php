@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <?php
 	global $post, $wpcargo;
 	$wpc_agent_args  	= array( 'role' => 'cargo_agent', 'orderby' => 'user_nicename', 'order' => 'ASC' );
@@ -41,7 +42,7 @@
 			<?php if( empty( $wpc_agents ) ) : ?>
 				<span class="meta-box error">
 					<?php esc_html_e('No agents found, please add agents ', 'wpcargo' ); ?>
-					<a href="<?php echo admin_url().'/user-new.php'; ?>">
+					<a href="<?php echo esc_url(admin_url().'/user-new.php'); ?>">
 						<?php esc_html__('here.', 'wpcargo' ); ?>
 					</a>
 					<?php esc_html__(' Make sure the role assign is "WPCargo Agent".', 'wpcargo' ); ?>

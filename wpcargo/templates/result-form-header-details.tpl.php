@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <div id="wpcargo-track-header" class="wpcargo-col-md-12 text-center detail-section">
 	<?php do_action( 'wpcargo_before_track_header', $shipment ); ?>
     <div class="comp_logo">
@@ -17,7 +18,7 @@
 	?>
 	<?php do_action( 'wpcargo_after_track_barcode', $shipment ); ?>
 	<div class="shipment-number">
-        <span class="wpcargo-title" style="display: block; font-size: 18px!important;"><?php echo apply_filters('wpcargo_track_result_shipment_number', esc_html( $tracknumber ) ); ?></span>
+        <span class="wpcargo-title" style="display: block; font-size: 18px!important;"><?php echo esc_html( apply_filters('wpcargo_track_result_shipment_number', $tracknumber ) ); ?></span>
     </div><!-- Track_Num -->
 	<?php do_action( 'wpcargo_after_track_header', $shipment ); ?>
 </div>

@@ -174,7 +174,7 @@ class WPC_MP_Settings {
 	public function wpc_mp_add_settings_nav() {
 		$view = sanitize_text_field( $_GET['page'] );
 		?>
-		<a class="nav-tab <?php echo ( $view == 'wpc-multiple-package') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo admin_url().'admin.php?page=wpc-multiple-package'; ?>" ><?php esc_html_e('Multiple Package Settings', 'wpcargo'); ?></a>
+		<a class="nav-tab <?php echo ( $view == 'wpc-multiple-package') ? 'nav-tab-active' : '' ;  ?>" href="<?php echo esc_url(admin_url().'admin.php?page=wpc-multiple-package'); ?>" ><?php esc_html_e('Multiple Package Settings', 'wpcargo'); ?></a>
 		<?php
 	}
 }

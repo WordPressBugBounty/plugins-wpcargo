@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <form method="post" action="options.php" class="email-setting-admin-form" style="display: block;overflow: hidden;clear: both;">
 	<?php
 		settings_fields( 'wpcargo_admin_mail_settings' );
@@ -16,7 +17,7 @@
 					?>
 					<tr>
 						<td><?php echo esc_html($key); ?></td>
-						<td><?php echo stripslashes( esc_html($value) ); ?></td>
+						<td><?php echo esc_html(stripslashes( $value) ); ?></td>
 					</tr>
 					<?php
 				}

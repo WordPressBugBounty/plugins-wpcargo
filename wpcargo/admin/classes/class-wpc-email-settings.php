@@ -53,7 +53,7 @@ class WPCargo_Email_Settings{
 		</div>'; 
 		?>
 	    <div class="wrap">
-	        <h1><?php echo wpcargo_admin_email_settings_label(); ?></h1>
+	        <h1><?php echo esc_html(wpcargo_admin_email_settings_label()); ?></h1>
 	        <style type="text/css">
 	        	table#email_meta_tags{
 	        		width: 100%;
@@ -99,7 +99,7 @@ class WPCargo_Email_Settings{
 
 		?>
 	    <div class="wrap">
-	        <h1><?php echo wpcargo_client_email_settings_label(); ?></h1>
+	        <h1><?php echo esc_html(wpcargo_client_email_settings_label()); ?></h1>
 	        <style type="text/css">
 	        	table#email_meta_tags{
 	        		width: 100%;

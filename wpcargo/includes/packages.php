@@ -139,14 +139,14 @@ function wpcargo_after_package_details_callback( $shipment ){
 		<div class="wpcargo-row">
 			<?php if( $dim_enable ): ?>
 				<section class="<?php echo esc_html( $class ); ?> first" style="text-align: center; font-weight: bold;">
-					<?php echo apply_filters( 'wpcargo_package_volumetric_label', esc_html__('Total Volumetric Weight :', 'wpcargo') ); ?> <span id="package_volumetric"><?php echo esc_html( $package_volumetric ).'</span>'. esc_html( wpcargo_package_settings()->weight_unit ); ?>.
+					<?php echo esc_html(apply_filters( 'wpcargo_package_volumetric_label', __('Total Volumetric Weight :', 'wpcargo') )); ?> <span id="package_volumetric"><?php echo esc_html( $package_volumetric ).'</span>'. esc_html( wpcargo_package_settings()->weight_unit ); ?>.
 				</section>
 				<section class="<?php echo esc_html( $class ); ?>" style="text-align: center; font-weight: bold;">
-					<?php echo apply_filters( 'wpcargo_package_volume_label', esc_html__('Total Volume :', 'wpcargo') ); ?> <span id="package_volume"><?php echo esc_html( $package_volume ).'</span>'. esc_html( wpcargo_volume_unit_label() ); ?>
+					<?php echo esc_html(apply_filters( 'wpcargo_package_volume_label', __('Total Volume :', 'wpcargo') )); ?> <span id="package_volume"><?php echo esc_html( $package_volume ).'</span>'. esc_html( wpcargo_volume_unit_label() ); ?>
 				</section>
 			<?php endif; ?>
 			<section class="<?php echo esc_html( $class ); ?>" style="text-align: center; font-weight: bold;">
-				<?php echo apply_filters( 'wpcargo_package_actual_weight_label', esc_html__('Total Actual Weight :', 'wpcargo') ); ?> <span id="package_actual_weight"><?php echo esc_html( $package_actual_weight ).'</span>'.esc_html( wpcargo_package_settings()->weight_unit ); ?>.
+				<?php echo esc_html(apply_filters( 'wpcargo_package_actual_weight_label', __('Total Actual Weight :', 'wpcargo') )); ?> <span id="package_actual_weight"><?php echo esc_html( $package_actual_weight ).'</span>'.esc_html( wpcargo_package_settings()->weight_unit ); ?>.
 			</section>
 		</div>
 	</div>
@@ -167,7 +167,7 @@ function wpcargo_after_package_details_script_callback( $shipment ){
 	$cubic_operator = $dimesion_unit != 'yd' ? '/' : '*' ;	
 	?>
 	<script>
-		var mainContainer   = 'table tbody[data-repeater-list="<?php echo WPCARGO_PACKAGE_POSTMETA; ?>"]';
+		var mainContainer   = 'table tbody[data-repeater-list="<?php echo esc_html(WPCARGO_PACKAGE_POSTMETA); ?>"]';
 		var divisor         = <?php echo esc_html( $divisor ); ?>;
 		var dimMeta         = <?php echo json_encode( $dim_meta ); ?>;
 		var qtyMeta         = "<?php echo esc_html( $qty_meta ); ?>";

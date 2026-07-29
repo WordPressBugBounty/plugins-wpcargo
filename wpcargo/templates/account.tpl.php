@@ -1,3 +1,4 @@
+<?php if(!defined('ABSPATH')) { exit; } ?>
 <h3><?php echo esc_html__('Welcome', 'wpcargo' ).' '.esc_html( $user_full_name ); ?></h3>
 <div id="wpcargo-account">	
 	<h4><?php esc_html_e('Shipment List', 'wpcargo' ); ?></h4> 
@@ -39,7 +40,7 @@
 								<?php if( !in_array( 'administrator', $user_info->roles ) ): ?>  
 									<td><?php echo ( $user_id == $shipperID ) ? esc_html__('Owned', 'wpcargo' ) : esc_html__('Receivable', 'wpcargo' ) ; ?></td> 
 								<?php endif; ?>                       
-								<td><a class="view-shipment" href="#" data-id="<?php echo get_the_ID(); ?>"><?php esc_html_e('View Details', 'wpcargo'); ?></a></td>	                    
+								<td><a class="view-shipment" href="#" data-id="<?php echo esc_attr(get_the_ID()); ?>"><?php esc_html_e('View Details', 'wpcargo'); ?></a></td>	                    
 							</tr>					  
 							<?php					
 						endwhile;
@@ -53,6 +54,6 @@
 				?>            
 			</tbody>        
 		</table>        
-		<?php echo wpcargo_pagination( array( 'custom_query' => $shipment_query ) ); ?>    
+		<?php echo wp_kses(wpcargo_pagination( array( 'custom_query' => $shipment_query ) ), 'post'); ?>    
 	</div><!-- list-container -->
 </div><!-- wpcargo-account -->

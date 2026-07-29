@@ -36,7 +36,7 @@ class WPCargo_Admin_Scripts{
 		if( isset($_GET['page'] ) && $_GET['page'] == 'wpcargo-settings' ) {
 			wp_enqueue_style( 'wp-color-picker' );
 			// Include our custom jQuery file with WordPress Color Picker dependency
-			wp_enqueue_script( 'color-picker-handle', WPCARGO_PLUGIN_URL . 'admin/assets/js/color-picker.js', array( 'wp-color-picker' ), false, true );
+			wp_enqueue_script( 'color-picker-handle', WPCARGO_PLUGIN_URL . 'admin/assets/js/color-picker.js', array( 'wp-color-picker' ), WPCARGO_VERSION, true );
 		}
 		
 		if(isset($_GET['page']) && strpos($_GET['page'], "wpc") !== false){
