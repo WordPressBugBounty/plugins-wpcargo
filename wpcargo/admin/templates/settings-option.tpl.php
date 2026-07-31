@@ -157,7 +157,7 @@
         <tr>
         	<th scope="row"><?php esc_html_e( 'Base color', 'wpcargo' ) ; ?></th>
         	<td>
-        		<p><input type="text" class="color-field" name="wpcargo_option_settings[wpcargo_base_color]" value="<?php echo ( $options['wpcargo_base_color'] ) ? '' : '#00A924' ; ?>" placeholder="#000"/></p>
+        		<p><input type="text" class="color-field" name="wpcargo_option_settings[wpcargo_base_color]" value="<?php echo esc_attr( $options['wpcargo_base_color'] ?? '' ) ?: '#00A924' ; ?>" placeholder="#000"/></p>
         	</td>
         </tr>
         <tr>

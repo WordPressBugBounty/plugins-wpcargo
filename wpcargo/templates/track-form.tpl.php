@@ -70,7 +70,7 @@ $get_action 		= !empty($result_page_id) ? get_page_link($result_page_id) : '';
 				<td class="track_form_td"><input class="input_track_num" type="text" name="<?php echo esc_attr(wpcargo_track_meta()); ?>" value="<?php echo esc_html($shipment_number); ?>" autocomplete="off" placeholder="<?php echo esc_html(apply_filters('wpcargo_tn_placeholder', __('Enter Tracking Number', 'wpcargo' ) )); ?>" required></td>
 				<td class="track_form_td submit-track"><input id="submit_wpcargo" class="wpcargo-btn wpcargo-btn-primary" name="wpcargo-submit" type="submit" value="<?php echo esc_html(apply_filters('wpcargo_tn_submit_val', __( 'TRACK RESULT', 'wpcargo' ) )); ?>"></td>
 			</tr>
-			<?php echo esc_html(apply_filters('wpcargo_example_text', ' <tr class="track_form_tr"><td class="track_form_td" colspan="2"><h4>'.__('Ex: 12345', 'wpcargo').'</h4></td></tr>')); ?>
+			<?php echo wp_kses(apply_filters('wpcargo_example_text', ' <tr class="track_form_tr"><td class="track_form_td" colspan="2"><h4>'.__('Ex: 12345', 'wpcargo').'</h4></td></tr>'), 'post'); ?>
 		</table>
 	</form>
 </div>

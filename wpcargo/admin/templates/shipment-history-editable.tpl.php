@@ -28,7 +28,45 @@
 								}
 							?>
 							<td class="tbl-sh-<?php echo esc_html($history_name); ?>">
-								<?php echo wpcargo_field_generator( $history_value, $history_name, $value, $picker_class.' status_'.$history_name ); ?>
+								<?php echo wp_kses(wpcargo_field_generator( $history_value, $history_name, $value, $picker_class.' status_'.$history_name ), array(
+								'p' => array(
+									'class' => array(),
+									'id' => array()
+								),
+								'label' => array(
+									'for' => array(),
+									'class' => array()
+								),
+								'input' => array(
+									'id' => array(),
+									'class' => array(),
+									'type' => array(),
+									'name' => array(),
+									'value' => array(),
+									'autocomplete' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'select' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'option' => array(
+									'id' => array(),
+									'class' => array(),
+									'value' => array(),
+									'selected' => array(),
+								),
+								'textarea' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+									'required' => array(),
+								),
+								)); ?>
 							</td>
 						<?php endforeach; ?>
 						<?php do_action('wpcargo_shipment_history_data_editable', $shipment ); ?>

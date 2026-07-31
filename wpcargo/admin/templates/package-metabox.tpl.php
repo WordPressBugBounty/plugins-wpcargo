@@ -29,7 +29,45 @@
 							<?php
 							$package_data = array_key_exists( $field_key, $data_value ) ? $data_value[$field_key] : '' ;
 							$package_data = is_array( $package_data ) ? implode(',', $package_data ) : $package_data;
-							echo wpcargo_field_generator( $field_value, $field_key, $package_data ); 
+							echo wp_kses(wpcargo_field_generator( $field_value, $field_key, $package_data ), array(
+								'p' => array(
+									'class' => array(),
+									'id' => array()
+								),
+								'label' => array(
+									'for' => array(),
+									'class' => array()
+								),
+								'input' => array(
+									'id' => array(),
+									'class' => array(),
+									'type' => array(),
+									'name' => array(),
+									'value' => array(),
+									'autocomplete' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'select' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'option' => array(
+									'id' => array(),
+									'class' => array(),
+									'value' => array(),
+									'selected' => array(),
+								),
+								'textarea' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+									'required' => array(),
+								),
+							)); 
 							?>
 						</td>
 					<?php endforeach; ?>
@@ -45,7 +83,45 @@
 						}
 						?>
 					<td>
-						<?php echo wpcargo_field_generator( $field_value, $field_key ); ?>
+						<?php echo wp_kses(wpcargo_field_generator( $field_value, $field_key ), array(
+								'p' => array(
+									'class' => array(),
+									'id' => array()
+								),
+								'label' => array(
+									'for' => array(),
+									'class' => array()
+								),
+								'input' => array(
+									'id' => array(),
+									'class' => array(),
+									'type' => array(),
+									'name' => array(),
+									'value' => array(),
+									'autocomplete' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'select' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'option' => array(
+									'id' => array(),
+									'class' => array(),
+									'value' => array(),
+									'selected' => array(),
+								),
+								'textarea' => array(
+									'id' => array(),
+									'class' => array(),
+									'name' => array(),
+									'required' => array(),
+								),
+						)); ?>
 					</td>
 					<?php endforeach; ?>
 					<td><input data-repeater-delete type="button" class="wpc-delete" value="<?php esc_html_e('Delete','wpcargo'); ?>"/></td>

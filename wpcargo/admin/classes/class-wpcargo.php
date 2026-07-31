@@ -1,17 +1,50 @@
 <?php
-if (! function_exists('cache_users')) :
-	function cache_users($user_ids)
-	{
+if ( ! function_exists( 'cache_users' ) ) :
+	/**
+	 * Prime the user cache for a list of user IDs.
+	 *
+	 * @param array $user_ids Array of user IDs.
+	 * @return void
+	 */
+	function cache_users( $user_ids ) {
 		global $wpdb;
-		update_meta_cache('user', $user_ids);
-		$clean = _get_non_cached_ids($user_ids, 'users');
-		if (empty($clean)) {
+
+		$user_ids = array_filter( array_map( 'absint', (array) $user_ids ) );
+
+		if ( empty( $user_ids ) ) {
 			return;
 		}
-		$list = implode(',', $clean);
-		$users = $wpdb->get_results("SELECT * FROM $wpdb->users WHERE ID IN ($list)");
-		foreach ($users as $user) {
-			update_user_caches($user);
+
+		// Prime user meta cache.
+		update_meta_cache( 'user', $user_ids );
+
+		// Determine which users are not already cached.
+		$uncached = array();
+
+		foreach ( $user_ids as $user_id ) {
+			if ( false === wp_cache_get( $user_id, 'users' ) ) {
+				$uncached[] = $user_id;
+			}
+		}
+
+		if ( empty( $uncached ) ) {
+			return;
+		}
+
+		$placeholders = implode( ',', array_fill( 0, count( $uncached ), '%d' ) );
+
+		$query = $wpdb->prepare(
+			"SELECT * FROM {$wpdb->users} WHERE ID IN ($placeholders)",
+			$uncached
+		);
+
+		$users = $wpdb->get_results( $query );
+
+		foreach ( $users as $user ) {
+			wp_cache_add( $user->ID, $user, 'users' );
+			wp_cache_add( $user->user_login, $user->ID, 'userlogins' );
+			wp_cache_add( $user->user_nicename, $user->ID, 'userslugs' );
+			wp_cache_add( $user->user_email, $user->ID, 'useremail' );
 		}
 	}
 endif;
@@ -375,12 +408,28 @@ class WPCargo
 		}
 		return esc_html($user_fullname);
 	}
-	function agent_id($value, string $field = "display_name")
-	{
+	function agent_id( $value, string $field = 'display_name' ) {
 		global $wpdb;
-		$table_prefix = $wpdb->prefix;
-		$display_name =  $wpdb->get_var($wpdb->prepare('SELECT `ID` FROM `' . $table_prefix . 'users` WHERE `' . $field . '` LIKE %s', $value));
-		return $display_name;
+
+		$allowed_fields = array(
+			'ID',
+			'user_login',
+			'user_nicename',
+			'user_email',
+			'user_url',
+			'display_name',
+		);
+
+		if ( ! in_array( $field, $allowed_fields, true ) ) {
+			$field = 'display_name';
+		}
+
+		$query = $wpdb->prepare(
+			"SELECT ID FROM {$wpdb->users} WHERE {$field} LIKE %s",
+			$value
+		);
+
+		return $wpdb->get_var( $query );
 	}
 	function time_format()
 	{

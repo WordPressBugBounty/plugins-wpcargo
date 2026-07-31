@@ -560,7 +560,7 @@ function wpcargo_invoice_shipper_info_callback( $shipmentDetails ){
     <p style="font-size:1.2rem;margin-bottom:18px;"><strong><?php esc_html_e('SHIPPER DETAILS:', 'wpcargo'); ?></strong></p>
     <?php
     if( class_exists( 'WPCCF_Fields' ) ){
-        echo $WPCCF_Fields->get_fields_data( 'shipper_info', $shipmentDetails['shipmentID']);
+        echo wp_kses($WPCCF_Fields->get_fields_data( 'shipper_info', esc_html($shipmentDetails['shipmentID'])), 'post');
     }else{
         ?>
         <p><?php esc_html_e( 'Shipper Name', 'wpcargo'); ?>: <?php echo esc_html( get_post_meta( $shipmentDetails['shipmentID'], 'wpcargo_shipper_name', true ) ); ?></p>
@@ -578,7 +578,7 @@ function wpcargo_invoice_receiver_info_callback( $shipmentDetails ){
     <section id="section-to">
     <?php 
         if( class_exists( 'WPCCF_Fields' ) ){
-            echo $WPCCF_Fields->get_fields_data( 'receiver_info', esc_html($shipmentDetails['shipmentID']));
+            echo wp_kses($WPCCF_Fields->get_fields_data( 'receiver_info', esc_html($shipmentDetails['shipmentID'])), 'post');
         }else{
             ?>
             <p><?php esc_html_e( 'Receiver Name', 'wpcargo'); ?>: <?php echo esc_html( get_post_meta( $shipmentDetails['shipmentID'], 'wpcargo_receiver_name', true ) ); ?></p>

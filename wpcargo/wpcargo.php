@@ -8,7 +8,7 @@
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Domain Path: /languages
- * Version: 8.0.4
+ * Version: 8.0.5
  */
 /*
 	WPCargo - Track and Trace Plugin
@@ -34,7 +34,7 @@ if (!defined('ABSPATH')) {
 
 //* Defined constant
 define('WPCARGO_TEXTDOMAIN', 'wpcargo');
-define('WPCARGO_VERSION', '8.0.4');
+define('WPCARGO_VERSION', '8.0.5');
 define('WPCARGO_DB_VERSION', '2.0.0');
 define('WPCARGO_FILE_DIR', __FILE__);
 define('WPCARGO_PLUGIN_URL', plugin_dir_url(WPCARGO_FILE_DIR));

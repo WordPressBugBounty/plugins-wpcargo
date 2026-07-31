@@ -61,10 +61,12 @@ class WPCargo_Metabox {
 							echo '<label for="'.esc_html($history_name).'">'.esc_html($history_value['label']).'</label>';
 							echo wp_kses(wpcargo_field_generator( $history_value, $history_name, $value, 'history-update '.$picker_class.' status_'.$history_name ), array(
 								'p' => array(
-									'class' => array()
+									'class' => array(),
+									'id' => array()
 								),
 								'label' => array(
-									'for' => array()
+									'for' => array(),
+									'class' => array()
 								),
 								'input' => array(
 									'id' => array(),
@@ -73,16 +75,27 @@ class WPCargo_Metabox {
 									'name' => array(),
 									'value' => array(),
 									'autocomplete' => array(),
+									'required' => array(),
+									'multiple' => array(),
 								),
 								'select' => array(
 									'id' => array(),
 									'class' => array(),
 									'name' => array(),
+									'required' => array(),
+									'multiple' => array(),
+								),
+								'option' => array(
+									'id' => array(),
+									'class' => array(),
+									'value' => array(),
+									'selected' => array(),
 								),
 								'textarea' => array(
 									'id' => array(),
 									'class' => array(),
 									'name' => array(),
+									'required' => array(),
 								),
 							));
 						}
